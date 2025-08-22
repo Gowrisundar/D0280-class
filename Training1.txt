@@ -851,4 +851,597 @@ NAME                                 DESIRED   CURRENT   READY   AGE
 replicaset.apps/mynginx-6448d57877   2         2         0       7m6s
 [student@workstation ~]$ vim deploy.yml 
 [student@workstation ~]$ vim service.yml 
-[student@workstation ~]$ 
+[student@workstation ~]$ mkdir custom
+[student@workstation ~]$ cd custom
+[student@workstation custom]$ mkdir base
+[student@workstation custom]$ cd base
+[student@workstation base]$ cp ~/*.yml
+[student@workstation base]$ cp ~/*.yml .
+[student@workstation base]$ 
+[student@workstation base]$ ls
+deploy.yml  service.yml
+[student@workstation base]$ ll
+total 8
+-rw-r--r--. 1 student student 933 Aug 22 05:13 deploy.yml
+-rw-r--r--. 1 student student 933 Aug 22 05:13 service.yml
+[student@workstation base]$ vim kustomization.yaml
+[student@workstation base]$ ll
+total 12
+-rw-r--r--. 1 student student 933 Aug 22 05:13 deploy.yml
+-rw-r--r--. 1 student student 152 Aug 22 05:16 kustomization.yaml
+-rw-r--r--. 1 student student 933 Aug 22 05:13 service.yml
+[student@workstation base]$ vim kustomization.yaml
+[student@workstation base]$ vim kustomization.yaml
+[student@workstation base]$ vim kustomization.yaml
+[student@workstation base]$ cd ..
+[student@workstation custom]$ mkdir overlays
+[student@workstation custom]$ cd overla
+bash: cd: overla: No such file or directory
+[student@workstation custom]$ cd overlays/
+[student@workstation overlays]$ mkdir production
+[student@workstation overlays]$ cd production/
+[student@workstation production]$ Kustomization.yaml
+bash: Kustomization.yaml: command not found...
+Failed to search for file: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer.
+[student@workstation production]$ vim kustomization.yaml
+[student@workstation production]$ rm kustomization.yaml 
+[student@workstation production]$ vim kustomization.yaml
+[student@workstation production]$ vim ~/deploy.yml 
+[student@workstation production]$ vim kustomization.yaml
+[student@workstation production]$ vim ~/deploy.yml 
+[student@workstation production]$ vim kustomization.yaml
+[student@workstation production]$ vim kustomization.yaml
+[student@workstation production]$ cd ../../
+[student@workstation custom]$ cd bas
+bash: cd: bas: No such file or directory
+[student@workstation custom]$ cd base/
+[student@workstation base]$ vim kustomization.yaml 
+[student@workstation base]$ ls
+deploy.yml  kustomization.yaml  service.yml
+[student@workstation base]$ vim deploy.yml 
+[student@workstation base]$ vim service.yml 
+[student@workstation base]$ cd ..
+[student@workstation custom]$ oc kustomize base
+error: accumulating resources: accumulation err='merging resources from 'service.yml': may not add resource with an already registered id: Deployment.v1.apps/mynginx.classc': must build at directory: '/home/student/custom/base/service.yml': file is not directory
+[student@workstation custom]$ cat base/
+cat: base/: Is a directory
+[student@workstation custom]$ cd ba
+bash: cd: ba: No such file or directory
+[student@workstation custom]$ base
+bash: base: command not found...
+Failed to search for file: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer.
+[student@workstation custom]$ cd base
+[student@workstation base]$ ls
+deploy.yml  kustomization.yaml  service.yml
+[student@workstation base]$ ll
+total 12
+-rw-r--r--. 1 student student 953 Aug 22 05:34 deploy.yml
+-rw-r--r--. 1 student student 128 Aug 22 05:33 kustomization.yaml
+-rw-r--r--. 1 student student 953 Aug 22 05:34 service.yml
+[student@workstation base]$ cat service.yml 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"kind":"Deployment","apiVersion":"apps/v1","metadata":{"name":"mynginx","creationTimestamp":null,"labels":{"app":"mynginx"}},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"mynginx"}},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"mynginx"}},"spec":{"containers":[{"name":"hello-worls-nginx","image":"quay.io/redhattraining/hello-worls-nginx","resources":{}}]}},"strategy":{}},"status":{}}
+  creationTimestamp: null
+  labels:
+    app: mynginx
+  name: mynginx
+  namespace: classc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mynginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mynginx
+    spec:
+      containers:
+      - image: quay.io/redhattraining/hello-worls-nginx
+        name: hello-worls-nginx
+        resources: {}
+status: {}
+[student@workstation base]$ cd ..
+[student@workstation custom]$ oc kustomize base
+error: accumulating resources: accumulation err='merging resources from 'service.yml': may not add resource with an already registered id: Deployment.v1.apps/mynginx.classc': must build at directory: '/home/student/custom/base/service.yml': file is not directory
+[student@workstation custom]$ oc kustomize base/
+error: accumulating resources: accumulation err='merging resources from 'service.yml': may not add resource with an already registered id: Deployment.v1.apps/mynginx.classc': must build at directory: '/home/student/custom/base/service.yml': file is not directory
+[student@workstation custom]$ cd  base/
+[student@workstation base]$ ls
+deploy.yml  kustomization.yaml  service.yml
+[student@workstation base]$ vim service.yml
+[student@workstation base]$ vim kustomization.yaml 
+[student@workstation base]$ ll
+total 12
+-rw-r--r--. 1 student student 953 Aug 22 05:34 deploy.yml
+-rw-r--r--. 1 student student 128 Aug 22 05:46 kustomization.yaml
+-rw-r--r--. 1 student student 953 Aug 22 05:45 service.yml
+[student@workstation base]$ [student@workstation ~]$ lab start auth-providers 
+FAIL    Waiting for cluster ll
+                            cd  base/
+bash: cd: base/: No such file or directory
+[student@workstation base]$ ls
+deploy.yml  kustomization.yaml  service.yml
+[student@workstation base]$ vim kustomization.yaml 
+[student@workstation base]$ vim kustomization.yaml 
+[student@workstation base]$ oc kustomize base
+error: must build at directory: not a valid directory: evalsymlink failure on 'base' : lstat /home/student/custom/base/base: no such file or directory
+[student@workstation base]$ cd ..
+[student@workstation custom]$ oc kustomize base
+error: accumulating resources: accumulation err='merging resources from 'service.yml': may not add resource with an already registered id: Deployment.v1.apps/mynginx.classc': must build at directory: '/home/student/custom/base/service.yml': file is not directory
+[student@workstation custom]$ oc kustomize base
+error: accumulating resources: accumulation err='merging resources from 'service.yml': may not add resource with an already registered id: Deployment.v1.apps/mynginx.classc': must build at directory: '/home/student/custom/base/service.yml': file is not directory
+[student@workstation custom]$ vim base/service.yml
+[student@workstation custom]$ cd base/
+[student@workstation base]$ cat kustomization.yaml 
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: classc
+resources:
+  - deploy.yml
+  - service.yml
+[student@workstation base]$ ll
+total 12
+-rw-r--r--. 1 student student 953 Aug 22 05:34 deploy.yml
+-rw-r--r--. 1 student student 128 Aug 22 05:48 kustomization.yaml
+-rw-r--r--. 1 student student 953 Aug 22 05:50 service.yml
+[student@workstation base]$ cat deploy.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"kind":"Deployment","apiVersion":"apps/v1","metadata":{"name":"mynginx","creationTimestamp":null,"labels":{"app":"mynginx"}},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"mynginx"}},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"mynginx"}},"spec":{"containers":[{"name":"hello-worls-nginx","image":"quay.io/redhattraining/hello-worls-nginx","resources":{}}]}},"strategy":{}},"status":{}}
+  creationTimestamp: null
+  labels:
+    app: mynginx
+  name: mynginx
+  namespace: classc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mynginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mynginx
+    spec:
+      containers:
+      - image: quay.io/redhattraining/hello-worls-nginx
+        name: hello-worls-nginx
+        resources: {}
+status: {}
+[student@workstation base]$ cat service.yml 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"kind":"Deployment","apiVersion":"apps/v1","metadata":{"name":"mynginx","creationTimestamp":null,"labels":{"app":"mynginx"}},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"mynginx"}},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"mynginx"}},"spec":{"containers":[{"name":"hello-worls-nginx","image":"quay.io/redhattraining/hello-worls-nginx","resources":{}}]}},"strategy":{}},"status":{}}
+  creationTimestamp: null
+  labels:
+    app: mynginx
+  name: mynginx
+  namespace: classc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mynginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mynginx
+    spec:
+      containers:
+      - image: quay.io/redhattraining/hello-worls-nginx
+        name: hello-worls-nginx
+        resources: {}
+status: {}
+[student@workstation base]$ vim service.yml 
+[student@workstation base]$ cd ..
+[student@workstation custom]$ cd ..
+[student@workstation ~]$ vim service.yml 
+[student@workstation ~]$ history
+    1  sudo reboot
+    2  lab start auth-providers 
+    3  oc whoami
+    4  oc login
+    5  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443
+    6  oc whoami
+    7  oc whoami -t
+    8  oc login -u developer -p developer
+    9  cat .kube/config 
+   10  oc login -u admin -p redhatocp
+   11  cat .kube/config 
+   12  oc new-project classA
+   13  oc new-project classa
+   14  oc get all
+   15  oc new-app --name myweb --image quay.io/redhattraining/hello-world-nginx
+   16  oc get all
+   17  oc describe deployment myweb 
+   18  oc get pods
+   19  oc get pods -o wide
+   20  oc edit deployment myweb
+   21  oc get pods
+   22  oc get all
+   23  oc describe deployment myweb
+   24  oc describe pod myweb-7b4f54c5d6-hlfzs myweb-7b4f54c5d6-qdfgj 
+   25  oc describe pod myweb-7b4f54c5d6-hlfzs
+   26  oc describe pod myweb-7b4f54c5d6-hlfzs | grep ip
+   27  oc describe pod myweb-7b4f54c5d6-qdfgj | grep ip
+   28  oc delete pod myweb-7b4f54c5d6-qdfgj 
+   29  oc get pod
+   30  oc describe pod myweb-7b4f54c5d6-vlmrw | grep ip
+   31  oc get svc
+   32  oc get endpoints
+   33  curl 10.8.0.109:8080
+   34  oc expose service myweb
+   35  oc get route
+   36  curl myweb-classa.apps.ocp4.example.com
+   37  oc get all
+   38  oc get sa
+   39  oc describe route myweb 
+   40  oc describe deployment myweb | grep -i labels
+   41  oc describe service myweb | grep -i labels
+   42  oc new-project classb
+   43  oc get all
+   44  oc get pods -n classa
+   45  oc edit deployment myweb -n classa
+   46  oc get pods -n classa
+   47  oc project classa
+   48  vim password
+   49  oc create secret generic mysecret --from-literal passwd=redhat
+   50  oc get secrets
+   51  oc describe secrets mysecret 
+   52  oc create secret generic mysecret1 --from-file secret=password
+   53  oc describe secrets mysecret1 
+   54  oc create configmap myconfig --from-literal CONFIG=dummyconfig
+   55  oc describe myconfig  myconfig
+   56  oc describe configmap  myconfig
+   57  oc get pods
+   58  oc create sa myserviceaccount
+   59  oc get sa
+   60  oc get all
+   61  oc project classb
+   62  oc create deployment mynginx --image quay.io/redhattraining/hello-worls-nginx --save-config --dry-run client -o yaml > deploy.yml
+   63  oc create deployment --name mynginx --image quay.io/redhattraining/hello-worls-nginx --save-config --dry-run client -o yaml > deploy.yml
+   64  oc create deployment mynginx --image quay.io/redhattraining/hello-worls-nginx --save-config --dry-run=client -o yaml > deploy.yml
+   65  ls
+   66  cat deploy.yml 
+   67  oc create -f deploy.yml 
+   68  oc get all
+   69  vim deploy.yml 
+   70  oc apply -f deploy.yml 
+   71  oc get all
+   72  oc create service clusterip mynginx --tcp 8080:8080 --save-config dry-run=client -o yml > service.yml
+   73  oc create service clusterip mynginx --tcp 8080:8080 --save-config dry-run=client -o yaml > service.yml
+   74  oc create service clusterip mynginx --tcp 8080:8080 --save-config --dry-run=client -o yaml > service.yml
+   75  oc get svc
+   76  oc create -f service.yml
+   77  oc get svc
+   78  oc get all
+   79  vim deploy.yml 
+   80  vim service.yml 
+   81  mkdir custom
+   82  cd custom
+   83  mkdir base
+   84  cd base
+   85  cp ~/*.yml
+   86  cp ~/*.yml .
+   87  ls
+   88  ll
+   89  vim kustomization.yaml
+   90  ll
+   91  vim kustomization.yaml
+   92  cd ..
+   93  mkdir overlays
+   94  cd overla
+   95  cd overlays/
+   96  mkdir production
+   97  cd production/
+   98  Kustomization.yaml
+   99  vim kustomization.yaml
+  100  rm kustomization.yaml 
+  101  vim kustomization.yaml
+  102  vim ~/deploy.yml 
+  103  vim kustomization.yaml
+  104  vim ~/deploy.yml 
+  105  vim kustomization.yaml
+  106  cd ../../
+  107  cd bas
+  108* 
+  109  vim kustomization.yaml 
+  110  ls
+  111  vim deploy.yml 
+  112  vim service.yml 
+  113  cd ..
+  114  oc kustomize base
+  115  cat base/
+  116  cd ba
+  117  base
+  118  cd base
+  119  ls
+  120  ll
+  121  cat service.yml 
+  122  cd ..
+  123  oc kustomize base
+  124  oc kustomize base/
+  125  cd  base/
+  126  ls
+  127  vim service.yml
+  128  vim kustomization.yaml 
+  129  ll
+  130  cd  base/
+  131  ls
+  132  vim kustomization.yaml 
+  133  oc kustomize base
+  134  cd ..
+  135  oc kustomize base
+  136  vim base/service.yml
+  137  cd base/
+  138  cat kustomization.yaml 
+  139  ll
+  140  cat deploy.yml
+  141  cat service.yml 
+  142  vim service.yml 
+  143  cd ..
+  144  vim service.yml 
+  145  history
+[student@workstation ~]$ !74
+oc create service clusterip mynginx --tcp 8080:8080 --save-config --dry-run=client -o yaml > service.yml
+[student@workstation ~]$ cat service.yml
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mynginx
+  name: mynginx
+spec:
+  ports:
+  - name: 8080-8080
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: mynginx
+  type: ClusterIP
+status:
+  loadBalancer: {}
+[student@workstation ~]$ cp service.yml custom/base/
+[student@workstation ~]$ cd custom/base/
+[student@workstation base]$ vim service.yml
+[student@workstation base]$ cd ..
+[student@workstation custom]$ oc kustomize base
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mynginx
+  name: mynginx
+  namespace: classc
+spec:
+  ports:
+  - name: 8080-8080
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: mynginx
+  type: ClusterIP
+status:
+  loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"kind":"Deployment","apiVersion":"apps/v1","metadata":{"name":"mynginx","creationTimestamp":null,"labels":{"app":"mynginx"}},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"mynginx"}},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"mynginx"}},"spec":{"containers":[{"name":"hello-worls-nginx","image":"quay.io/redhattraining/hello-worls-nginx","resources":{}}]}},"strategy":{}},"status":{}}
+  creationTimestamp: null
+  labels:
+    app: mynginx
+  name: mynginx
+  namespace: classc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mynginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mynginx
+    spec:
+      containers:
+      - image: quay.io/redhattraining/hello-worls-nginx
+        name: hello-worls-nginx
+        resources: {}
+status: {}
+[student@workstation custom]$ oc kustomize overlays/production/
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mynginx
+  name: mynginx
+  namespace: classc
+spec:
+  ports:
+  - name: 8080-8080
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: mynginx
+  type: ClusterIP
+status:
+  loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"kind":"Deployment","apiVersion":"apps/v1","metadata":{"name":"mynginx","creationTimestamp":null,"labels":{"app":"mynginx"}},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"mynginx"}},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"mynginx"}},"spec":{"containers":[{"name":"hello-worls-nginx","image":"quay.io/redhattraining/hello-worls-nginx","resources":{}}]}},"strategy":{}},"status":{}}
+  creationTimestamp: null
+  labels:
+    app: mynginx
+  name: mynginx
+  namespace: classc
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mynginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mynginx
+    spec:
+      containers:
+      - image: quay.io/redhattraining/hello-worls-nginx
+        name: hello-worls-nginx
+        resources: {}
+status: {}
+[student@workstation custom]$ oc new-project classc
+Now using project "classc" on server "https://api.ocp4.example.com:6443".
+
+You can add applications to this project with the 'new-app' command. For example, try:
+
+    oc new-app rails-postgresql-example
+
+to build a new example application in Ruby. Or use kubectl to deploy a simple Kubernetes application:
+
+    kubectl create deployment hello-node --image=registry.k8s.io/e2e-test-images/agnhost:2.43 -- /agnhost serve-hostname
+
+[student@workstation custom]$ oc apply -k base/
+service/mynginx created
+deployment.apps/mynginx created
+[student@workstation custom]$ oc get pods
+NAME                       READY   STATUS         RESTARTS   AGE
+mynginx-6448d57877-dqjbg   0/1     ErrImagePull   0          14s
+mynginx-6448d57877-xbdd6   0/1     ErrImagePull   0          14s
+[student@workstation custom]$ vim base/kustomization.yaml 
+[student@workstation custom]$ vim base/kustomization.yaml 
+[student@workstation custom]$ vim base/deploy.yml 
+[student@workstation custom]$ oc apply -k base/
+service/mynginx configured
+deployment.apps/mynginx configured
+[student@workstation custom]$ oc get pods
+NAME                       READY   STATUS              RESTARTS   AGE
+mynginx-557bc5cfc9-j56rn   0/1     ContainerCreating   0          4s
+mynginx-6448d57877-dqjbg   0/1     ImagePullBackOff    0          2m37s
+mynginx-6448d57877-xbdd6   0/1     ImagePullBackOff    0          2m37s
+[student@workstation custom]$ oc get pods -w
+NAME                       READY   STATUS    RESTARTS   AGE
+mynginx-557bc5cfc9-c6p6s   1/1     Running   0          7s
+mynginx-557bc5cfc9-j56rn   1/1     Running   0          12s
+^[c^X^C[student@workstation custom]$ oc apply -k overlays/production/
+service/mynginx configured
+deployment.apps/mynginx configured
+[student@workstation custom]$ oc get pods
+NAME                       READY   STATUS    RESTARTS   AGE
+mynginx-557bc5cfc9-c6p6s   1/1     Running   0          34s
+mynginx-557bc5cfc9-j56rn   1/1     Running   0          39s
+mynginx-557bc5cfc9-vhwdq   1/1     Running   0          6s
+[student@workstation custom]$ cd overlays/
+[student@workstation overlays]$ ls
+production
+[student@workstation overlays]$ mkdir test
+[student@workstation overlays]$ cp production/kustomization.yaml test/
+[student@workstation overlays]$ cd test/
+[student@workstation test]$ vim kustomization.yaml 
+[student@workstation test]$ cd ..
+[student@workstation overlays]$ cd ..
+[student@workstation custom]$ oc kustomize overlays/test/
+apiVersion: v1
+data:
+  MYNAME: c3VuZGFy
+kind: Secret
+metadata:
+  name: secret1-g6b5tkh2t2
+  namespace: classc
+type: Opaque
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mynginx
+  name: mynginx
+  namespace: classc
+spec:
+  ports:
+  - name: 8080-8080
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: mynginx
+  type: ClusterIP
+status:
+  loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"kind":"Deployment","apiVersion":"apps/v1","metadata":{"name":"mynginx","creationTimestamp":null,"labels":{"app":"mynginx"}},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"mynginx"}},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"mynginx"}},"spec":{"containers":[{"name":"hello-worls-nginx","image":"quay.io/redhattraining/hello-worls-nginx","resources":{}}]}},"strategy":{}},"status":{}}
+  creationTimestamp: null
+  labels:
+    app: mynginx
+  name: mynginx
+  namespace: classc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mynginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mynginx
+    spec:
+      containers:
+      - image: quay.io/redhattraining/hello-world-nginx
+        name: hello-world-nginx
+        resources: {}
+status: {}
+[student@workstation custom]$ oc apply -k overlays/test/
+secret/secret1-g6b5tkh2t2 created
+service/mynginx configured
+deployment.apps/mynginx configured
+[student@workstation custom]$ oc get secrets
+NAME                       TYPE                                  DATA   AGE
+builder-dockercfg-vkh4z    kubernetes.io/dockercfg               1      10m
+builder-token-46mqm        kubernetes.io/service-account-token   4      10m
+default-dockercfg-ptxpc    kubernetes.io/dockercfg               1      10m
+default-token-qlbzp        kubernetes.io/service-account-token   4      10m
+deployer-dockercfg-mpgrr   kubernetes.io/dockercfg               1      10m
+deployer-token-khp2r       kubernetes.io/service-account-token   4      10m
+secret1-g6b5tkh2t2         Opaque                                1      8s
+[student@workstation custom]$ 
