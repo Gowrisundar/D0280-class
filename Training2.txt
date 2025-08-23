@@ -1,0 +1,963 @@
+[student@workstation ~]$ lab start auth-
+auth-providers  auth-rbac       auth-review     
+[student@workstation ~]$ lab start auth-
+auth-providers  auth-rbac       auth-review     
+[student@workstation ~]$ lab start auth-providers 
+SUCCESS Waiting for cluster
+SUCCESS Copy exercise files
+SUCCESS Remove auth-providers project
+SUCCESS Remove cluster admin role
+SUCCESS Remove secret auth-review
+SUCCESS Remove HTPasswd secret
+SUCCESS Reset identity provider
+SUCCESS Removing all users
+SUCCESS Removing all identities
+SUCCESS Removing authentication pods
+SUCCESS Waiting for authentication to work
+[student@workstation ~]$ helm --version
+Error: unknown flag: --version
+[student@workstation ~]$ helm version -a
+Error: unknown shorthand flag: 'a' in -a
+[student@workstation ~]$ helm -v
+Error: flag needs an argument: 'v' in -v
+[student@workstation ~]$ helm
+The Kubernetes package manager
+
+Common actions for Helm:
+
+- helm search:    search for charts
+- helm pull:      download a chart to your local directory to view
+- helm install:   upload the chart to Kubernetes
+- helm list:      list releases of charts
+
+Environment variables:
+
+| Name                               | Description                                                                                       |
+|------------------------------------|---------------------------------------------------------------------------------------------------|
+| $HELM_CACHE_HOME                   | set an alternative location for storing cached files.                                             |
+| $HELM_CONFIG_HOME                  | set an alternative location for storing Helm configuration.                                       |
+| $HELM_DATA_HOME                    | set an alternative location for storing Helm data.                                                |
+| $HELM_DEBUG                        | indicate whether or not Helm is running in Debug mode                                             |
+| $HELM_DRIVER                       | set the backend storage driver. Values are: configmap, secret, memory, sql.                       |
+| $HELM_DRIVER_SQL_CONNECTION_STRING | set the connection string the SQL storage driver should use.                                      |
+| $HELM_MAX_HISTORY                  | set the maximum number of helm release history.                                                   |
+| $HELM_NAMESPACE                    | set the namespace used for the helm operations.                                                   |
+| $HELM_NO_PLUGINS                   | disable plugins. Set HELM_NO_PLUGINS=1 to disable plugins.                                        |
+| $HELM_PLUGINS                      | set the path to the plugins directory                                                             |
+| $HELM_REGISTRY_CONFIG              | set the path to the registry config file.                                                         |
+| $HELM_REPOSITORY_CACHE             | set the path to the repository cache directory                                                    |
+| $HELM_REPOSITORY_CONFIG            | set the path to the repositories file.                                                            |
+| $KUBECONFIG                        | set an alternative Kubernetes configuration file (default "~/.kube/config")                       |
+| $HELM_KUBEAPISERVER                | set the Kubernetes API Server Endpoint for authentication                                         |
+| $HELM_KUBECAFILE                   | set the Kubernetes certificate authority file.                                                    |
+| $HELM_KUBEASGROUPS                 | set the Groups to use for impersonation using a comma-separated list.                             |
+| $HELM_KUBEASUSER                   | set the Username to impersonate for the operation.                                                |
+| $HELM_KUBECONTEXT                  | set the name of the kubeconfig context.                                                           |
+| $HELM_KUBETOKEN                    | set the Bearer KubeToken used for authentication.                                                 |
+| $HELM_KUBEINSECURE_SKIP_TLS_VERIFY | indicate if the Kubernetes API server's certificate validation should be skipped (insecure)       |
+| $HELM_KUBETLS_SERVER_NAME          | set the server name used to validate the Kubernetes API server certificate                        |
+| $HELM_BURST_LIMIT                  | set the default burst limit in the case the server contains many CRDs (default 100, -1 to disable)|
+
+Helm stores cache, configuration, and data based on the following configuration order:
+
+- If a HELM_*_HOME environment variable is set, it will be used
+- Otherwise, on systems supporting the XDG base directory specification, the XDG variables will be used
+- When no other location is set a default location will be used based on the operating system
+
+By default, the default directories depend on the Operating System. The defaults are listed below:
+
+| Operating System | Cache Path                | Configuration Path             | Data Path               |
+|------------------|---------------------------|--------------------------------|-------------------------|
+| Linux            | $HOME/.cache/helm         | $HOME/.config/helm             | $HOME/.local/share/helm |
+| macOS            | $HOME/Library/Caches/helm | $HOME/Library/Preferences/helm | $HOME/Library/helm      |
+| Windows          | %TEMP%\helm               | %APPDATA%\helm                 | %APPDATA%\helm          |
+
+Usage:
+  helm [command]
+
+Available Commands:
+  completion  generate autocompletion scripts for the specified shell
+  create      create a new chart with the given name
+  dependency  manage a chart's dependencies
+  env         helm client environment information
+  get         download extended information of a named release
+  help        Help about any command
+  history     fetch release history
+  install     install a chart
+  lint        examine a chart for possible issues
+  list        list releases
+  package     package a chart directory into a chart archive
+  plugin      install, list, or uninstall Helm plugins
+  pull        download a chart from a repository and (optionally) unpack it in local directory
+  push        push a chart to remote
+  registry    login to or logout from a registry
+  repo        add, list, remove, update, and index chart repositories
+  rollback    roll back a release to a previous revision
+  search      search for a keyword in charts
+  show        show information of a chart
+  status      display the status of the named release
+  template    locally render templates
+  test        run tests for a release
+  uninstall   uninstall a release
+  upgrade     upgrade a release
+  verify      verify that a chart at the given path has been signed and is valid
+  version     print the client version information
+
+Flags:
+      --burst-limit int                 client-side default throttling limit (default 100)
+      --debug                           enable verbose output
+  -h, --help                            help for helm
+      --kube-apiserver string           the address and the port for the Kubernetes API server
+      --kube-as-group stringArray       group to impersonate for the operation, this flag can be repeated to specify multiple groups.
+      --kube-as-user string             username to impersonate for the operation
+      --kube-ca-file string             the certificate authority file for the Kubernetes API server connection
+      --kube-context string             name of the kubeconfig context to use
+      --kube-insecure-skip-tls-verify   if true, the Kubernetes API server's certificate will not be checked for validity. This will make your HTTPS connections insecure
+      --kube-tls-server-name string     server name to use for Kubernetes API server certificate validation. If it is not provided, the hostname used to contact the server is used
+      --kube-token string               bearer token used for authentication
+      --kubeconfig string               path to the kubeconfig file
+  -n, --namespace string                namespace scope for this request
+      --registry-config string          path to the registry config file (default "/home/student/.config/helm/registry/config.json")
+      --repository-cache string         path to the file containing cached repository indexes (default "/home/student/.cache/helm/repository")
+      --repository-config string        path to the file containing repository names and URLs (default "/home/student/.config/helm/repositories.yaml")
+
+Use "helm [command] --help" for more information about a command.
+[student@workstation ~]$ helm version
+version.BuildInfo{Version:"v3.12.1+11.el8", GitCommit:"8cc4ba6fcc61d4c2ad2084c214dda40124bf5d32", GitTreeState:"clean", GoVersion:"go1.19.10"}
+[student@workstation ~]$ mkdir project
+[student@workstation ~]$ cd project/
+[student@workstation project]$ helm create mychart
+Creating mychart
+[student@workstation project]$ ll
+total 0
+drwxr-xr-x. 4 student student 93 Aug 23 01:43 mychart
+[student@workstation project]$ tree
+.
+└── mychart
+    ├── Chart.yaml
+    ├── charts
+    ├── templates
+    │   ├── NOTES.txt
+    │   ├── _helpers.tpl
+    │   ├── deployment.yaml
+    │   ├── hpa.yaml
+    │   ├── ingress.yaml
+    │   ├── service.yaml
+    │   ├── serviceaccount.yaml
+    │   └── tests
+    │       └── test-connection.yaml
+    └── values.yaml
+
+4 directories, 10 files
+[student@workstation project]$ vim mychart/Chart.yaml 
+[student@workstation project]$ vim mychart/values.yaml 
+[student@workstation project]$ vim mychart/values.yaml 
+[student@workstation project]$ vim mychart/templates/deployment.yaml 
+[student@workstation project]$ vim mychart/templates/service.yaml 
+[student@workstation project]$ helm install mychart mynginxweb
+Error: INSTALLATION FAILED: non-absolute URLs should be in form of repo_name/path_to_chart, got: mynginxweb
+[student@workstation project]$ helm install  mynginxweb mychart/
+Error: INSTALLATION FAILED: Kubernetes cluster unreachable: the server has asked for the client to provide credentials
+[student@workstation project]$ oc login -u admin -p redhatocp https://api.ocp4.example.com:6443
+Login successful.
+
+You have access to 77 projects, the list has been suppressed. You can list all projects with 'oc projects'
+
+Using project "classe".
+[student@workstation project]$ helm install  mynginxweb mychart/
+NAME: mynginxweb
+LAST DEPLOYED: Sat Aug 23 01:52:45 2025
+NAMESPACE: classe
+STATUS: deployed
+REVISION: 1
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace classe -l "app.kubernetes.io/name=mychart,app.kubernetes.io/instance=mynginxweb" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace classe $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace classe port-forward $POD_NAME 8080:$CONTAINER_PORT
+[student@workstation project]$ oc get all
+Warning: apps.openshift.io/v1 DeploymentConfig is deprecated in v4.14+, unavailable in v4.10000+
+NAME                                     READY   STATUS             RESTARTS   AGE
+pod/mynginxweb-mychart-646d44799-n9jds   0/1     ImagePullBackOff   0          21s
+pod/mysql-1-deploy                       0/1     Completed          0          13h
+pod/mysql-2-deploy                       0/1     Completed          0          13h
+pod/mysql-2-fqg7n                        1/1     Running            1          13h
+
+NAME                            DESIRED   CURRENT   READY   AGE
+replicationcontroller/mysql-1   0         0         0       13h
+replicationcontroller/mysql-2   1         1         1       13h
+
+NAME                         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+service/mynginxweb-mychart   ClusterIP   172.30.29.25     <none>        8080/TCP   21s
+service/mysql                ClusterIP   172.30.197.160   <none>        3306/TCP   13h
+
+NAME                                 READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/mynginxweb-mychart   0/1     1            0           21s
+
+NAME                                           DESIRED   CURRENT   READY   AGE
+replicaset.apps/mynginxweb-mychart-646d44799   1         1         0       21s
+
+NAME                                       REVISION   DESIRED   CURRENT   TRIGGERED BY
+deploymentconfig.apps.openshift.io/mysql   2          1         1         config,image(mysql:8.0-el8)
+[student@workstation project]$ oc get pods -w
+NAME                                 READY   STATUS             RESTARTS   AGE
+mynginxweb-mychart-646d44799-n9jds   0/1     ImagePullBackOff   0          49s
+mysql-1-deploy                       0/1     Completed          0          13h
+mysql-2-deploy                       0/1     Completed          0          13h
+mysql-2-fqg7n                        1/1     Running            1          13h
+mynginxweb-mychart-646d44799-n9jds   0/1     ErrImagePull       0          58s
+^[zmynginxweb-mychart-646d44799-n9jds   0/1     ImagePullBackOff   0          72s
+^C[student@workstation project]$ vim mychart/Chart.yaml 
+[student@workstation project]$ vim mychart/values.yaml 
+[student@workstation project]$ oc get pods
+NAME                                 READY   STATUS             RESTARTS   AGE
+mynginxweb-mychart-646d44799-n9jds   0/1     ImagePullBackOff   0          2m26s
+mysql-1-deploy                       0/1     Completed          0          13h
+mysql-2-deploy                       0/1     Completed          0          13h
+mysql-2-fqg7n                        1/1     Running            1          13h
+[student@workstation project]$ oc get pods
+NAME                                 READY   STATUS             RESTARTS   AGE
+mynginxweb-mychart-646d44799-n9jds   0/1     ImagePullBackOff   0          2m51s
+mysql-1-deploy                       0/1     Completed          0          13h
+mysql-2-deploy                       0/1     Completed          0          13h
+mysql-2-fqg7n                        1/1     Running            1          13h
+[student@workstation project]$ helm list -a
+NAME      	NAMESPACE	REVISION	UPDATED                                	STATUS  	CHART        	APP VERSION
+mynginxweb	classe   	1       	2025-08-23 01:52:45.275601914 -0400 EDT	deployed	mychart-0.1.0	1.16.0     
+[student@workstation project]$ oc get pods
+NAME                                 READY   STATUS         RESTARTS   AGE
+mynginxweb-mychart-646d44799-n9jds   0/1     ErrImagePull   0          3m22s
+mysql-1-deploy                       0/1     Completed      0          13h
+mysql-2-deploy                       0/1     Completed      0          13h
+mysql-2-fqg7n                        1/1     Running        1          13h
+[student@workstation project]$ oc delete pod mynginxweb-mychart-646d44799-n9jds
+pod "mynginxweb-mychart-646d44799-n9jds" deleted
+[student@workstation project]$ oc get pods
+NAME                                 READY   STATUS         RESTARTS   AGE
+mynginxweb-mychart-646d44799-kvh8h   0/1     ErrImagePull   0          5s
+mysql-1-deploy                       0/1     Completed      0          13h
+mysql-2-deploy                       0/1     Completed      0          13h
+mysql-2-fqg7n                        1/1     Running        1          13h
+[student@workstation project]$ helm upgrade mynginxweb
+Error: "helm upgrade" requires 2 arguments
+
+Usage:  helm upgrade [RELEASE] [CHART] [flags]
+[student@workstation project]$ helm upgrade mynginxweb mychart/
+Release "mynginxweb" has been upgraded. Happy Helming!
+NAME: mynginxweb
+LAST DEPLOYED: Sat Aug 23 01:57:36 2025
+NAMESPACE: classe
+STATUS: deployed
+REVISION: 2
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace classe -l "app.kubernetes.io/name=mychart,app.kubernetes.io/instance=mynginxweb" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace classe $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace classe port-forward $POD_NAME 8080:$CONTAINER_PORT
+[student@workstation project]$ oc get pods
+NAME                                 READY   STATUS      RESTARTS   AGE
+mynginxweb-mychart-bb588c6bc-lwz2v   1/1     Running     0          12s
+mysql-1-deploy                       0/1     Completed   0          13h
+mysql-2-deploy                       0/1     Completed   0          13h
+mysql-2-fqg7n                        1/1     Running     1          13h
+[student@workstation project]$ helm list -a
+NAME      	NAMESPACE	REVISION	UPDATED                                	STATUS  	CHART        	APP VERSION
+mynginxweb	classe   	2       	2025-08-23 01:57:36.641074564 -0400 EDT	deployed	mychart-0.1.0	1.16.0     
+[student@workstation project]$ vim mychart/values.yaml 
+[student@workstation project]$ vim mychart/templates/deployment.yaml 
+[student@workstation project]$ vim mychart/values.yaml 
+[student@workstation project]$ vim mychart/Chart.yaml 
+[student@workstation project]$ helm upgrade mynginxweb mychart/
+Release "mynginxweb" has been upgraded. Happy Helming!
+NAME: mynginxweb
+LAST DEPLOYED: Sat Aug 23 02:00:11 2025
+NAMESPACE: classe
+STATUS: deployed
+REVISION: 3
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace classe -l "app.kubernetes.io/name=mychart,app.kubernetes.io/instance=mynginxweb" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace classe $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace classe port-forward $POD_NAME 8080:$CONTAINER_PORT
+[student@workstation project]$ oc get pods
+NAME                                 READY   STATUS      RESTARTS   AGE
+mynginxweb-mychart-bb588c6bc-lwz2v   1/1     Running     0          2m43s
+mynginxweb-mychart-bb588c6bc-rprn7   1/1     Running     0          8s
+mysql-1-deploy                       0/1     Completed   0          13h
+mysql-2-deploy                       0/1     Completed   0          13h
+mysql-2-fqg7n                        1/1     Running     1          13h
+[student@workstation project]$ helm list -a
+NAME      	NAMESPACE	REVISION	UPDATED                                	STATUS  	CHART        	APP VERSION
+mynginxweb	classe   	3       	2025-08-23 02:00:11.887213047 -0400 EDT	deployed	mychart-0.1.1	1.16.0     
+[student@workstation project]$ helm rollback mynginxweb 2
+Rollback was a success! Happy Helming!
+[student@workstation project]$ helm list -a
+NAME      	NAMESPACE	REVISION	UPDATED                                	STATUS  	CHART        	APP VERSION
+mynginxweb	classe   	4       	2025-08-23 02:01:42.845145943 -0400 EDT	deployed	mychart-0.1.0	1.16.0     
+[student@workstation project]$ oc get pods
+NAME                                 READY   STATUS      RESTARTS   AGE
+mynginxweb-mychart-bb588c6bc-lwz2v   1/1     Running     0          4m18s
+mysql-1-deploy                       0/1     Completed   0          13h
+mysql-2-deploy                       0/1     Completed   0          13h
+mysql-2-fqg7n                        1/1     Running     1          13h
+[student@workstation project]$ helm rollback mynginxweb 3
+Rollback was a success! Happy Helming!
+[student@workstation project]$ oc get pods
+NAME                                 READY   STATUS      RESTARTS   AGE
+mynginxweb-mychart-bb588c6bc-7mzkb   1/1     Running     0          4s
+mynginxweb-mychart-bb588c6bc-lwz2v   1/1     Running     0          4m41s
+mysql-1-deploy                       0/1     Completed   0          13h
+mysql-2-deploy                       0/1     Completed   0          13h
+mysql-2-fqg7n                        1/1     Running     1          13h
+[student@workstation project]$ helm list -a
+NAME      	NAMESPACE	REVISION	UPDATED                                	STATUS  	CHART        	APP VERSION
+mynginxweb	classe   	5       	2025-08-23 02:02:14.521530175 -0400 EDT	deployed	mychart-0.1.1	1.16.0     
+[student@workstation project]$ helm history 
+Error: "helm history" requires 1 argument
+
+Usage:  helm history RELEASE_NAME [flags]
+[student@workstation project]$ helm history mynginxweb 
+REVISION	UPDATED                 	STATUS    	CHART        	APP VERSION	DESCRIPTION     
+1       	Sat Aug 23 01:52:45 2025	superseded	mychart-0.1.0	1.16.0     	Install complete
+2       	Sat Aug 23 01:57:36 2025	superseded	mychart-0.1.0	1.16.0     	Upgrade complete
+3       	Sat Aug 23 02:00:11 2025	superseded	mychart-0.1.1	1.16.0     	Upgrade complete
+4       	Sat Aug 23 02:01:42 2025	superseded	mychart-0.1.0	1.16.0     	Rollback to 2   
+5       	Sat Aug 23 02:02:14 2025	deployed  	mychart-0.1.1	1.16.0     	Rollback to 3   
+[student@workstation project]$ helm history --help
+
+History prints historical revisions for a given release.
+
+A default maximum of 256 revisions will be returned. Setting '--max'
+configures the maximum length of the revision list returned.
+
+The historical release set is printed as a formatted table, e.g:
+
+    $ helm history angry-bird
+    REVISION    UPDATED                     STATUS          CHART             APP VERSION     DESCRIPTION
+    1           Mon Oct 3 10:15:13 2016     superseded      alpine-0.1.0      1.0             Initial install
+    2           Mon Oct 3 10:15:13 2016     superseded      alpine-0.1.0      1.0             Upgraded successfully
+    3           Mon Oct 3 10:15:13 2016     superseded      alpine-0.1.0      1.0             Rolled back to 2
+    4           Mon Oct 3 10:15:13 2016     deployed        alpine-0.1.0      1.0             Upgraded successfully
+
+Usage:
+  helm history RELEASE_NAME [flags]
+
+Aliases:
+  history, hist
+
+Flags:
+  -h, --help            help for history
+      --max int         maximum number of revision to include in history (default 256)
+  -o, --output format   prints the output in the specified format. Allowed values: table, json, yaml (default table)
+
+Global Flags:
+      --burst-limit int                 client-side default throttling limit (default 100)
+      --debug                           enable verbose output
+      --kube-apiserver string           the address and the port for the Kubernetes API server
+      --kube-as-group stringArray       group to impersonate for the operation, this flag can be repeated to specify multiple groups.
+      --kube-as-user string             username to impersonate for the operation
+      --kube-ca-file string             the certificate authority file for the Kubernetes API server connection
+      --kube-context string             name of the kubeconfig context to use
+      --kube-insecure-skip-tls-verify   if true, the Kubernetes API server's certificate will not be checked for validity. This will make your HTTPS connections insecure
+      --kube-tls-server-name string     server name to use for Kubernetes API server certificate validation. If it is not provided, the hostname used to contact the server is used
+      --kube-token string               bearer token used for authentication
+      --kubeconfig string               path to the kubeconfig file
+  -n, --namespace string                namespace scope for this request
+      --registry-config string          path to the registry config file (default "/home/student/.config/helm/registry/config.json")
+      --repository-cache string         path to the file containing cached repository indexes (default "/home/student/.cache/helm/repository")
+      --repository-config string        path to the file containing repository names and URLs (default "/home/student/.config/helm/repositories.yaml")
+[student@workstation project]$ helm 
+completion  (generate autocompletion scripts for the specified shell)
+create      (create a new chart with the given name)
+dependency  (manage a chart's dependencies)
+env         (helm client environment information)
+get         (download extended information of a named release)
+help        (Help about any command)
+history     (fetch release history)
+install     (install a chart)
+lint        (examine a chart for possible issues)
+list        (list releases)
+package     (package a chart directory into a chart archive)
+plugin      (install, list, or uninstall Helm plugins)
+pull        (download a chart from a repository and (optionally) unpack it in local directory)
+push        (push a chart to remote)
+registry    (login to or logout from a registry)
+repo        (add, list, remove, update, and index chart repositories)
+rollback    (roll back a release to a previous revision)
+search      (search for a keyword in charts)
+show        (show information of a chart)
+status      (display the status of the named release)
+template    (locally render templates)
+test        (run tests for a release)
+uninstall   (uninstall a release)
+upgrade     (upgrade a release)
+verify      (verify that a chart at the given path has been signed and is valid)
+version     (print the client version information)
+[student@workstation project]$ helm status mynginxweb 
+NAME: mynginxweb
+LAST DEPLOYED: Sat Aug 23 02:02:14 2025
+NAMESPACE: classe
+STATUS: deployed
+REVISION: 5
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace classe -l "app.kubernetes.io/name=mychart,app.kubernetes.io/instance=mynginxweb" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace classe $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace classe port-forward $POD_NAME 8080:$CONTAINER_PORT
+[student@workstation project]$ helm status mynginxweb 1
+Error: "helm status" requires 1 argument
+
+Usage:  helm status RELEASE_NAME [flags]
+[student@workstation project]$ helm status mynginxweb
+NAME: mynginxweb
+LAST DEPLOYED: Sat Aug 23 02:02:14 2025
+NAMESPACE: classe
+STATUS: deployed
+REVISION: 5
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace classe -l "app.kubernetes.io/name=mychart,app.kubernetes.io/instance=mynginxweb" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace classe $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace classe port-forward $POD_NAME 8080:$CONTAINER_PORT
+[student@workstation project]$ helm repo add mychart http://helm.ocp4.example.com/charts
+"mychart" has been added to your repositories
+[student@workstation project]$ helm list
+NAME      	NAMESPACE	REVISION	UPDATED                                	STATUS  	CHART        	APP VERSION
+mynginxweb	classe   	5       	2025-08-23 02:02:14.521530175 -0400 EDT	deployed	mychart-0.1.1	1.16.0     
+[student@workstation project]$ helm repo list
+NAME   	URL                                
+mychart	http://helm.ocp4.example.com/charts
+[student@workstation project]$ helm search repo --version
+Error: flag needs an argument: --version
+[student@workstation project]$ helm search repo --versions
+NAME                    	CHART VERSION	APP VERSION	DESCRIPTION                                       
+mychart/etherpad        	0.0.7        	latest     	A Helm chart for etherpad lite                    
+mychart/etherpad        	0.0.6        	latest     	A Helm chart for etherpad lite                    
+mychart/examplechart    	0.1.0        	           	A Helm chart for Kubernetes                       
+mychart/influxdb        	4.12.1       	1.8.10     	Scalable datastore for metrics, events, and rea...
+mychart/mysql-persistent	0.0.2        	0.0.2      	This content is expermental, do not use it in p...
+[student@workstation project]$ tree mychart
+mychart
+├── Chart.yaml
+├── charts
+├── templates
+│   ├── NOTES.txt
+│   ├── _helpers.tpl
+│   ├── deployment.yaml
+│   ├── hpa.yaml
+│   ├── ingress.yaml
+│   ├── service.yaml
+│   ├── serviceaccount.yaml
+│   └── tests
+│       └── test-connection.yaml
+└── values.yaml
+
+3 directories, 10 files
+[student@workstation project]$ helm repo add myrepo http://helm.ocp4.example.com/charts
+"myrepo" has been added to your repositories
+[student@workstation project]$ helm search repo --versions
+NAME                    	CHART VERSION	APP VERSION	DESCRIPTION                                       
+mychart/etherpad        	0.0.7        	latest     	A Helm chart for etherpad lite                    
+mychart/etherpad        	0.0.6        	latest     	A Helm chart for etherpad lite                    
+mychart/examplechart    	0.1.0        	           	A Helm chart for Kubernetes                       
+mychart/influxdb        	4.12.1       	1.8.10     	Scalable datastore for metrics, events, and rea...
+mychart/mysql-persistent	0.0.2        	0.0.2      	This content is expermental, do not use it in p...
+myrepo/etherpad         	0.0.7        	latest     	A Helm chart for etherpad lite                    
+myrepo/etherpad         	0.0.6        	latest     	A Helm chart for etherpad lite                    
+myrepo/examplechart     	0.1.0        	           	A Helm chart for Kubernetes                       
+myrepo/influxdb         	4.12.1       	1.8.10     	Scalable datastore for metrics, events, and rea...
+myrepo/mysql-persistent 	0.0.2        	0.0.2      	This content is expermental, do not use it in p...
+[student@workstation project]$ tree myrepo
+myrepo [error opening dir]
+
+0 directories, 0 files
+[student@workstation project]$ tree mychart
+mychart
+├── Chart.yaml
+├── charts
+├── templates
+│   ├── NOTES.txt
+│   ├── _helpers.tpl
+│   ├── deployment.yaml
+│   ├── hpa.yaml
+│   ├── ingress.yaml
+│   ├── service.yaml
+│   ├── serviceaccount.yaml
+│   └── tests
+│       └── test-connection.yaml
+└── values.yaml
+
+3 directories, 10 files
+[student@workstation project]$ oc project
+Using project "classe" on server "https://api.ocp4.example.com:6443".
+[student@workstation project]$ oc new-project classf
+Now using project "classf" on server "https://api.ocp4.example.com:6443".
+
+You can add applications to this project with the 'new-app' command. For example, try:
+
+    oc new-app rails-postgresql-example
+
+to build a new example application in Ruby. Or use kubectl to deploy a simple Kubernetes application:
+
+    kubectl create deployment hello-node --image=registry.k8s.io/e2e-test-images/agnhost:2.43 -- /agnhost serve-hostname
+
+[student@workstation project]$ 
+[student@workstation project]$ helm search repo --versions
+NAME                    	CHART VERSION	APP VERSION	DESCRIPTION                                       
+mychart/etherpad        	0.0.7        	latest     	A Helm chart for etherpad lite                    
+mychart/etherpad        	0.0.6        	latest     	A Helm chart for etherpad lite                    
+mychart/examplechart    	0.1.0        	           	A Helm chart for Kubernetes                       
+mychart/influxdb        	4.12.1       	1.8.10     	Scalable datastore for metrics, events, and rea...
+mychart/mysql-persistent	0.0.2        	0.0.2      	This content is expermental, do not use it in p...
+myrepo/etherpad         	0.0.7        	latest     	A Helm chart for etherpad lite                    
+myrepo/etherpad         	0.0.6        	latest     	A Helm chart for etherpad lite                    
+myrepo/examplechart     	0.1.0        	           	A Helm chart for Kubernetes                       
+myrepo/influxdb         	4.12.1       	1.8.10     	Scalable datastore for metrics, events, and rea...
+myrepo/mysql-persistent 	0.0.2        	0.0.2      	This content is expermental, do not use it in p...
+[student@workstation project]$ helm show values myrepo/etherpad --version 0.0.6
+# Default values for etherpad.
+replicaCount: 1
+
+defaultTitle: "Labs Etherpad"
+defaultText: "✍️ Assign yourself a user and share your ideas! ✍️"
+
+image:
+  repository: etherpad
+  name:
+  tag:
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podSecurityContext: {}
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 9001
+
+ingress:
+  enabled: false
+  hosts:
+    - name: etherpad.organization.com
+  annotations: {}
+
+route:
+  enabled: true
+  host: null
+  targetPort: http
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+persistence:
+  enabled: true
+  annotations: {}
+  storageClass:
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  mountPath: /opt/etherpad-lite/var
+
+[student@workstation project]$ ssh lab@utility
+Warning: Permanently added 'utility' (ED25519) to the list of known hosts.
+Register this system with Red Hat Insights: insights-client --register
+Create an account or view all your systems at https://red.ht/insights-dashboard
+Last login: Tue Jan 23 07:08:41 2024 from 172.25.250.254
+[lab@utility ~]$ cat ocp4/auth/kubeadmin-password 
+GkLhW-tYZIb-GsgvP
+[lab@utility ~]$ 
+[lab@utility ~]$ 
+[lab@utility ~]$ 
+[lab@utility ~]$ 
+[lab@utility ~]$ 
+[lab@utility ~]$ 
+[lab@utility ~]$ 
+[lab@utility ~]$ scp ocp4/auth/kubeadmin-password student@worstation:/home/student
+ssh: Could not resolve hostname worstation: Name or service not known
+Connection closed
+[lab@utility ~]$ scp ocp4/auth/kubeadmin-password student@workstation:/home/student
+The authenticity of host 'workstation (172.25.250.9)' can't be established.
+ED25519 key fingerprint is SHA256:wzihkKCkATj5PbpjS8tbHlAVICyakF5U40xn7bL/6LE.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'workstation' (ED25519) to the list of known hosts.
+student@workstation's password: 
+kubeadmin-password                                                             100%   23    31.7KB/s   00:00    
+[lab@utility ~]$ exit
+logout
+Connection to utility closed.
+[student@workstation project]$ oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP
+Error from server (InternalError): Internal error occurred: unexpected response: 500
+[student@workstation project]$ cd ..
+[student@workstation ~]$ cat kubeadmin-password 
+GkLhW-tYZIb-GsgvP-oDQVd[student@workstation ~]$ oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP-oDQVd
+Login successful.
+
+You have access to 78 projects, the list has been suppressed. You can list all projects with 'oc projects'
+
+Using project "classf".
+[student@workstation ~]$ oc whoami
+kube:admin
+[student@workstation ~]$ oc whoami --show-console 
+https://console-openshift-console.apps.ocp4.example.com
+[student@workstation ~]$ oc get se
+secrets                                           servicecas.operator.openshift.io
+securitycontextconstraints.security.openshift.io  servicemonitors.monitoring.coreos.com
+serviceaccounts                                   services
+[student@workstation ~]$ oc get se
+secrets                                           servicecas.operator.openshift.io
+securitycontextconstraints.security.openshift.io  servicemonitors.monitoring.coreos.com
+serviceaccounts                                   services
+[student@workstation ~]$ oc get se
+secrets                                           servicecas.operator.openshift.io
+securitycontextconstraints.security.openshift.io  servicemonitors.monitoring.coreos.com
+serviceaccounts                                   services
+[student@workstation ~]$ oc get se
+secrets                                           servicecas.operator.openshift.io
+securitycontextconstraints.security.openshift.io  servicemonitors.monitoring.coreos.com
+serviceaccounts                                   services
+[student@workstation ~]$ oc get se
+secrets                                           servicecas.operator.openshift.io
+securitycontextconstraints.security.openshift.io  servicemonitors.monitoring.coreos.com
+serviceaccounts                                   services
+[student@workstation ~]$ oc get secrets -n openshift-con
+openshift-config                       openshift-console-operator
+openshift-config-managed               openshift-console-user-settings
+openshift-config-operator              openshift-controller-manager
+openshift-console                      openshift-controller-manager-operator
+[student@workstation ~]$ oc get secrets -n openshift-con
+openshift-config                       openshift-console-operator
+openshift-config-managed               openshift-console-user-settings
+openshift-config-operator              openshift-controller-manager
+openshift-console                      openshift-controller-manager-operator
+[student@workstation ~]$ oc get secrets -n openshift-con
+openshift-config                       openshift-console-operator
+openshift-config-managed               openshift-console-user-settings
+openshift-config-operator              openshift-controller-manager
+openshift-console                      openshift-controller-manager-operator
+[student@workstation ~]$ oc get secrets -n openshift-config
+NAME                                      TYPE                                  DATA   AGE
+builder-dockercfg-jxq7c                   kubernetes.io/dockercfg               1      577d
+builder-token-58gfm                       kubernetes.io/service-account-token   4      577d
+classroom-tls                             kubernetes.io/tls                     2      577d
+default-dockercfg-4dz88                   kubernetes.io/dockercfg               1      577d
+default-token-xgbf2                       kubernetes.io/service-account-token   4      577d
+deployer-dockercfg-p79r7                  kubernetes.io/dockercfg               1      577d
+deployer-token-kkcdd                      kubernetes.io/service-account-token   4      577d
+etcd-client                               kubernetes.io/tls                     2      577d
+etcd-metric-client                        kubernetes.io/tls                     2      577d
+etcd-metric-signer                        kubernetes.io/tls                     2      577d
+etcd-signer                               kubernetes.io/tls                     2      577d
+htpasswd-secret                           Opaque                                1      577d
+initial-service-account-private-key       Opaque                                1      577d
+ldap-secret                               Opaque                                1      555d
+pull-secret                               kubernetes.io/dockerconfigjson        1      577d
+webhook-authentication-integrated-oauth   Opaque                                1      577d
+[student@workstation ~]$ oc login -u admin -p redhatocp
+Login successful.
+
+You have access to 78 projects, the list has been suppressed. You can list all projects with 'oc projects'
+
+Using project "classf".
+[student@workstation ~]$ oc get secrets -n openshift-config
+NAME                                      TYPE                                  DATA   AGE
+builder-dockercfg-jxq7c                   kubernetes.io/dockercfg               1      577d
+builder-token-58gfm                       kubernetes.io/service-account-token   4      577d
+classroom-tls                             kubernetes.io/tls                     2      577d
+default-dockercfg-4dz88                   kubernetes.io/dockercfg               1      577d
+default-token-xgbf2                       kubernetes.io/service-account-token   4      577d
+deployer-dockercfg-p79r7                  kubernetes.io/dockercfg               1      577d
+deployer-token-kkcdd                      kubernetes.io/service-account-token   4      577d
+etcd-client                               kubernetes.io/tls                     2      577d
+etcd-metric-client                        kubernetes.io/tls                     2      577d
+etcd-metric-signer                        kubernetes.io/tls                     2      577d
+etcd-signer                               kubernetes.io/tls                     2      577d
+htpasswd-secret                           Opaque                                1      577d
+initial-service-account-private-key       Opaque                                1      577d
+ldap-secret                               Opaque                                1      555d
+pull-secret                               kubernetes.io/dockerconfigjson        1      577d
+webhook-authentication-integrated-oauth   Opaque                                1      577d
+[student@workstation ~]$ oc extract secret/htpasswd-secret -n openshift-config --t
+--tls-server-name  (Server name to use for server certificate validation. If it is not provided, the hostname u…)
+--to               (Directory to extract files to.)
+--token            (Bearer token for authentication to the API server)
+[student@workstation ~]$ oc extract secret/htpasswd-secret -n openshift-config --t
+--tls-server-name  (Server name to use for server certificate validation. If it is not provided, the hostname u…)
+--to               (Directory to extract files to.)
+--token            (Bearer token for authentication to the API server)
+[student@workstation ~]$ oc extract secret/htpasswd-secret -n openshift-config --t
+--tls-server-name  (Server name to use for server certificate validation. If it is not provided, the hostname u…)
+--to               (Directory to extract files to.)
+--token            (Bearer token for authentication to the API server)
+[student@workstation ~]$ oc extract secret/htpasswd-secret -n openshift-config --t
+--tls-server-name  (Server name to use for server certificate validation. If it is not provided, the hostname u…)
+--to               (Directory to extract files to.)
+--token            (Bearer token for authentication to the API server)
+[student@workstation ~]$ oc extract secret/htpasswd-secret -n openshift-config --t
+--tls-server-name  (Server name to use for server certificate validation. If it is not provided, the hostname u…)
+--to               (Directory to extract files to.)
+--token            (Bearer token for authentication to the API server)
+[student@workstation ~]$ oc extract secret/htpasswd-secret -n openshift-config --t
+--tls-server-name  (Server name to use for server certificate validation. If it is not provided, the hostname u…)
+--to               (Directory to extract files to.)
+--token            (Bearer token for authentication to the API server)
+[student@workstation ~]$ oc extract secret/htpasswd-secret -n openshift-config --to . --confirm
+htpasswd
+[student@workstation ~]$ cat htpasswd 
+admin:$apr1$BCfSxONZ$aX8A/NLYJ2lvqId44fBRE1
+developer:$apr1$W4aBvJYF$rKQY1m2US9NCNQXqHvfjN1
+[student@workstation ~]$ htpasswd -b -B htpasswd gowri redhat
+Adding password for user gowri
+[student@workstation ~]$ cat htpasswd 
+admin:$apr1$BCfSxONZ$aX8A/NLYJ2lvqId44fBRE1
+developer:$apr1$W4aBvJYF$rKQY1m2US9NCNQXqHvfjN1
+gowri:$2y$05$MNgWmQMsbZzAqFkTlQvOC.tC3gt8TYiIhPfS.6imZP9LZFL9GLIGO
+[student@workstation ~]$ htpasswd -b -B htpasswd sundar redhat
+Adding password for user sundar
+[student@workstation ~]$ htpasswd -b -B htpasswd anto redhat
+Adding password for user anto
+[student@workstation ~]$ cat htpasswd 
+admin:$apr1$BCfSxONZ$aX8A/NLYJ2lvqId44fBRE1
+developer:$apr1$W4aBvJYF$rKQY1m2US9NCNQXqHvfjN1
+gowri:$2y$05$MNgWmQMsbZzAqFkTlQvOC.tC3gt8TYiIhPfS.6imZP9LZFL9GLIGO
+sundar:$2y$05$SgjK4vIhveMF0WG6o0ROe.2aUmSxICvRw9qpsqAK7oEBcq.1BbUSK
+anto:$2y$05$beWWV7jMUipVkngLzGgr..jz6oqEVxz3zDiqjtT9yMu/CWNegUTF2
+[student@workstation ~]$ oc set d
+data             (Update the data within a config map or secret)
+deployment-hook  (Update a deployment hook on a deployment config)
+[student@workstation ~]$ oc set data secret/htpasswd-secret --from-file htpasswd=htpasswd -n openshift-config
+secret/htpasswd-secret data updated
+[student@workstation ~]$ oc get pods -n openshift-authentication -w
+NAME                               READY   STATUS    RESTARTS   AGE
+oauth-openshift-6658df6f98-4vm6d   1/1     Running   0          70m
+[student@workstation ~]$ oc login -usundar -predhat
+Login failed (401 Unauthorized)
+Verify you have provided the correct credentials.
+[student@workstation ~]$ oc get pods -n openshift-authentication -w
+NAME                               READY   STATUS    RESTARTS   AGE
+oauth-openshift-6658df6f98-4vm6d   1/1     Running   0          72m
+[student@workstation ~]$ oc get auth -o yaml > auth.yml
+error: the server doesn't have a resource type "auth"
+[student@workstation ~]$ oc get oauth -o yaml > oauth.yml
+[student@workstation ~]$ cat oauth.yml
+apiVersion: v1
+items:
+- apiVersion: config.openshift.io/v1
+  kind: OAuth
+  metadata:
+    creationTimestamp: "2024-01-23T12:00:51Z"
+    generation: 3
+    name: cluster
+    resourceVersion: "102571"
+    uid: b03b54a0-f288-407e-82b3-a1124d0de42b
+  spec:
+    identityProviders:
+    - ldap:
+        attributes:
+          email:
+          - mail
+          id:
+          - dn
+          name:
+          - cn
+          preferredUsername:
+          - uid
+        bindDN: uid=admin,cn=users,cn=accounts,dc=ocp4,dc=example,dc=com
+        bindPassword:
+          name: ldap-secret
+        ca:
+          name: ca-config-map
+        insecure: false
+        url: ldap://idm.ocp4.example.com/cn=users,cn=accounts,dc=ocp4,dc=example,dc=com?uid
+      mappingMethod: claim
+      name: Red Hat Identity Management
+      type: LDAP
+kind: List
+metadata:
+  resourceVersion: ""
+[student@workstation ~]$ vim oauth.yml 
+[student@workstation ~]$ oc apply -f oauth.yml -n openshift-config
+Warning: resource oauths/cluster is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by oc apply. oc apply should only be used on resources created declaratively by either oc create --save-config or oc apply. The missing annotation will be patched automatically.
+oauth.config.openshift.io/cluster configured
+[student@workstation ~]$ oc get pods openshift-authentication -w
+Error from server (NotFound): pods "openshift-authentication" not found
+[student@workstation ~]$ oc get pods
+No resources found in classf namespace.
+[student@workstation ~]$ oc get pods -n openshift-authentication -w
+NAME                               READY   STATUS    RESTARTS   AGE
+oauth-openshift-6658df6f98-4vm6d   1/1     Running   0          79m
+[student@workstation ~]$ oc create secret generic htp-secret --from-file htpasswd=htpasswd -n openshift-config
+secret/htp-secret created
+[student@workstation ~]$ vim oauth.yml 
+[student@workstation ~]$ oc replace -f oauth.yml -n openshift-config
+Error from server (Conflict): error when replacing "oauth.yml": Operation cannot be fulfilled on oauths.config.openshift.io "cluster": the object has been modified; please apply your changes to the latest version and try again
+[student@workstation ~]$ oc apply -f oauth.yml -n openshift-config
+Error from server (Conflict): error when applying patch:
+{"metadata":{"annotations":{"kubectl.kubernetes.io/last-applied-configuration":"{\"apiVersion\":\"config.openshift.io/v1\",\"kind\":\"OAuth\",\"metadata\":{\"annotations\":{},\"creationTimestamp\":\"2024-01-23T12:00:51Z\",\"generation\":3,\"name\":\"cluster\",\"resourceVersion\":\"102571\",\"uid\":\"b03b54a0-f288-407e-82b3-a1124d0de42b\"},\"spec\":{\"identityProviders\":[{\"ldap\":{\"attributes\":{\"email\":[\"mail\"],\"id\":[\"dn\"],\"name\":[\"cn\"],\"preferredUsername\":[\"uid\"]},\"bindDN\":\"uid=admin,cn=users,cn=accounts,dc=ocp4,dc=example,dc=com\",\"bindPassword\":{\"name\":\"ldap-secret\"},\"ca\":{\"name\":\"ca-config-map\"},\"insecure\":false,\"url\":\"ldap://idm.ocp4.example.com/cn=users,cn=accounts,dc=ocp4,dc=example,dc=com?uid\"},\"mappingMethod\":\"claim\",\"name\":\"Red Hat Identity Management\",\"type\":\"LDAP\"},{\"htpasswd\":{\"fileData\":{\"name\":\"htp-secret\"}},\"mappingMethod\":\"claim\",\"name\":\"htpasswd-identity\",\"type\":\"HTPasswd\"}]}}\n"},"generation":3,"resourceVersion":"102571"},"spec":{"identityProviders":[{"ldap":{"attributes":{"email":["mail"],"id":["dn"],"name":["cn"],"preferredUsername":["uid"]},"bindDN":"uid=admin,cn=users,cn=accounts,dc=ocp4,dc=example,dc=com","bindPassword":{"name":"ldap-secret"},"ca":{"name":"ca-config-map"},"insecure":false,"url":"ldap://idm.ocp4.example.com/cn=users,cn=accounts,dc=ocp4,dc=example,dc=com?uid"},"mappingMethod":"claim","name":"Red Hat Identity Management","type":"LDAP"},{"htpasswd":{"fileData":{"name":"htp-secret"}},"mappingMethod":"claim","name":"htpasswd-identity","type":"HTPasswd"}]}}
+to:
+Resource: "config.openshift.io/v1, Resource=oauths", GroupVersionKind: "config.openshift.io/v1, Kind=OAuth"
+Name: "cluster", Namespace: ""
+for: "oauth.yml": error when patching "oauth.yml": Operation cannot be fulfilled on oauths.config.openshift.io "cluster": the object has been modified; please apply your changes to the latest version and try again
+[student@workstation ~]$ oc get oauth -o yaml > oauth.yml
+[student@workstation ~]$ vim oauth.yml 
+[student@workstation ~]$ oc get se
+secrets                                           servicecas.operator.openshift.io
+securitycontextconstraints.security.openshift.io  servicemonitors.monitoring.coreos.com
+serviceaccounts                                   services
+[student@workstation ~]$ oc get secrets -n openshift-con
+openshift-config                       openshift-console-operator
+openshift-config-managed               openshift-console-user-settings
+openshift-config-operator              openshift-controller-manager
+openshift-console                      openshift-controller-manager-operator
+[student@workstation ~]$ oc get secrets -n openshift-con
+openshift-config                       openshift-console-operator
+openshift-config-managed               openshift-console-user-settings
+openshift-config-operator              openshift-controller-manager
+openshift-console                      openshift-controller-manager-operator
+[student@workstation ~]$ oc get secrets -n openshift-con
+openshift-config                       openshift-console-operator
+openshift-config-managed               openshift-console-user-settings
+openshift-config-operator              openshift-controller-manager
+openshift-console                      openshift-controller-manager-operator
+[student@workstation ~]$ oc get secrets -n openshift-config
+NAME                                      TYPE                                  DATA   AGE
+builder-dockercfg-jxq7c                   kubernetes.io/dockercfg               1      577d
+builder-token-58gfm                       kubernetes.io/service-account-token   4      577d
+classroom-tls                             kubernetes.io/tls                     2      577d
+default-dockercfg-4dz88                   kubernetes.io/dockercfg               1      577d
+default-token-xgbf2                       kubernetes.io/service-account-token   4      577d
+deployer-dockercfg-p79r7                  kubernetes.io/dockercfg               1      577d
+deployer-token-kkcdd                      kubernetes.io/service-account-token   4      577d
+etcd-client                               kubernetes.io/tls                     2      577d
+etcd-metric-client                        kubernetes.io/tls                     2      577d
+etcd-metric-signer                        kubernetes.io/tls                     2      577d
+etcd-signer                               kubernetes.io/tls                     2      577d
+htp-secret                                Opaque                                1      2m42s
+htpasswd-secret                           Opaque                                1      577d
+initial-service-account-private-key       Opaque                                1      577d
+ldap-secret                               Opaque                                1      555d
+pull-secret                               kubernetes.io/dockerconfigjson        1      577d
+webhook-authentication-integrated-oauth   Opaque                                1      577d
+[student@workstation ~]$ oc apply -f oauth.yml -n openshift-config
+oauth.config.openshift.io/cluster configured
+[student@workstation ~]$ oc get pods -n openshift-authentication -w
+NAME                              READY   STATUS    RESTARTS   AGE
+oauth-openshift-5447bfb47-944px   1/1     Running   0          5m24s
+[student@workstation ~]$ oc login -u gowri -p redhat
+Login successful.
+
+You don't have any projects. You can try to create a new project, by running
+
+    oc new-project <projectname>
+
+[student@workstation ~]$ oc new-project testProject
+The ProjectRequest "testProject" is invalid: metadata.name: Invalid value: "testProject": a lowercase RFC 1123 label must consist of lower case alphanumeric characters or '-', and must start and end with an alphanumeric character (e.g. 'my-name',  or '123-abc', regex used for validation is '[a-z0-9]([-a-z0-9]*[a-z0-9])?')
+[student@workstation ~]$ oc new-project testproject
+Now using project "testproject" on server "https://api.ocp4.example.com:6443".
+
+You can add applications to this project with the 'new-app' command. For example, try:
+
+    oc new-app rails-postgresql-example
+
+to build a new example application in Ruby. Or use kubectl to deploy a simple Kubernetes application:
+
+    kubectl create deployment hello-node --image=registry.k8s.io/e2e-test-images/agnhost:2.43 -- /agnhost serve-hostname
+
+[student@workstation ~]$ oc project
+Using project "testproject" on server "https://api.ocp4.example.com:6443".
+[student@workstation ~]$ oc login -uadmin -predhatocp
+Login successful.
+
+You have access to 79 projects, the list has been suppressed. You can list all projects with 'oc projects'
+
+Using project "testproject".
+[student@workstation ~]$ htpasswd -D htpasswd gowri
+Deleting password for user gowri
+[student@workstation ~]$ cat htpasswd
+admin:$apr1$BCfSxONZ$aX8A/NLYJ2lvqId44fBRE1
+developer:$apr1$W4aBvJYF$rKQY1m2US9NCNQXqHvfjN1
+sundar:$2y$05$SgjK4vIhveMF0WG6o0ROe.2aUmSxICvRw9qpsqAK7oEBcq.1BbUSK
+anto:$2y$05$beWWV7jMUipVkngLzGgr..jz6oqEVxz3zDiqjtT9yMu/CWNegUTF2
+[student@workstation ~]$ oc set
+Configure application resources
+
+ These commands help you make changes to existing application resources.
+
+Available Commands:
+  build-hook        Update a build hook on a build config
+  build-secret      Update a build secret on a build config
+  data              Update the data within a config map or secret
+  deployment-hook   Update a deployment hook on a deployment config
+  env               Update environment variables on a pod template
+  image             Update the image of a pod template
+  image-lookup      Change how images are resolved when deploying applications
+  probe             Update a probe on a pod template
+  resources         Update resource requests/limits on objects with pod templates
+  route-backends    Update the backends for a route
+  selector          Set the selector on a resource
+  serviceaccount    Update the service account of a resource
+  subject           Update the user, group, or service account in a role binding or cluster role
+binding
+  triggers          Update the triggers on one or more objects
+  volumes           Update volumes on a pod template
+
+Usage:
+  oc set COMMAND [flags] [options]
+
+Use "oc <command> --help" for more information about a given command.
+Use "oc options" for a list of global command-line options (applies to all commands).
+[student@workstation ~]$ oc set data secret/htp-secret --from-file htpasswd=htpasswd -n openshift-config
+secret/htp-secret data updated
+[student@workstation ~]$ oc get pods -n openshift-authentication -w
+NAME                               READY   STATUS        RESTARTS   AGE
+oauth-openshift-5447bfb47-944px    1/1     Terminating   0          12m
+oauth-openshift-55455889f8-jkrpt   0/1     Pending       0          8s
+oauth-openshift-5447bfb47-944px    0/1     Terminating   0          13m
+oauth-openshift-55455889f8-jkrpt   0/1     Pending       0          26s
+oauth-openshift-55455889f8-jkrpt   0/1     Pending       0          26s
+oauth-openshift-55455889f8-jkrpt   0/1     ContainerCreating   0          26s
+oauth-openshift-5447bfb47-944px    0/1     Terminating         0          13m
+oauth-openshift-5447bfb47-944px    0/1     Terminating         0          13m
+oauth-openshift-5447bfb47-944px    0/1     Terminating         0          13m
+oauth-openshift-55455889f8-jkrpt   0/1     ContainerCreating   0          26s
+oauth-openshift-55455889f8-jkrpt   0/1     Running             0          27s
+oauth-openshift-55455889f8-jkrpt   1/1     Running             0          27s
+^C[student@workstation ~]oc login -ugowri -predhat
+Login failed (401 Unauthorized)
+Verify you have provided the correct credentials.
+[student@workstation ~]$ oc login -usundar -predhat
+Login successful.
+
+You don't have any projects. You can try to create a new project, by running
+
+    oc new-project <projectname>
+
+[student@workstation ~]$ oc login -u admin -p redhatocp
+Login successful.
+
+You have access to 79 projects, the list has been suppressed. You can list all projects with 'oc projects'
+
+Using project "default".
+[student@workstation ~]$ 
