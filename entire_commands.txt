@@ -1,0 +1,672 @@
+[student@workstation ~]$ history
+    1  sudo reboot
+    2  lab start auth-providers 
+    3  oc whoami
+    4  oc login
+    5  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443
+    6  oc whoami
+    7  oc whoami -t
+    8  oc login -u developer -p developer
+    9  cat .kube/config 
+   10  oc login -u admin -p redhatocp
+   11  cat .kube/config 
+   12  oc new-project classA
+   13  oc new-project classa
+   14  oc get all
+   15  oc new-app --name myweb --image quay.io/redhattraining/hello-world-nginx
+   16  oc get all
+   17  oc describe deployment myweb 
+   18  oc get pods
+   19  oc get pods -o wide
+   20  oc edit deployment myweb
+   21  oc get pods
+   22  oc get all
+   23  oc describe deployment myweb
+   24  oc describe pod myweb-7b4f54c5d6-hlfzs myweb-7b4f54c5d6-qdfgj 
+   25  oc describe pod myweb-7b4f54c5d6-hlfzs
+   26  oc describe pod myweb-7b4f54c5d6-hlfzs | grep ip
+   27  oc describe pod myweb-7b4f54c5d6-qdfgj | grep ip
+   28  oc delete pod myweb-7b4f54c5d6-qdfgj 
+   29  oc get pod
+   30  oc describe pod myweb-7b4f54c5d6-vlmrw | grep ip
+   31  oc get svc
+   32  oc get endpoints
+   33  curl 10.8.0.109:8080
+   34  oc expose service myweb
+   35  oc get route
+   36  curl myweb-classa.apps.ocp4.example.com
+   37  oc get all
+   38  oc get sa
+   39  oc describe route myweb 
+   40  oc describe deployment myweb | grep -i labels
+   41  oc describe service myweb | grep -i labels
+   42  oc new-project classb
+   43  oc get all
+   44  oc get pods -n classa
+   45  oc edit deployment myweb -n classa
+   46  oc get pods -n classa
+   47  oc project classa
+   48  vim password
+   49  oc create secret generic mysecret --from-literal passwd=redhat
+   50  oc get secrets
+   51  oc describe secrets mysecret 
+   52  oc create secret generic mysecret1 --from-file secret=password
+   53  oc describe secrets mysecret1 
+   54  oc create configmap myconfig --from-literal CONFIG=dummyconfig
+   55  oc describe myconfig  myconfig
+   56  oc describe configmap  myconfig
+   57  oc get pods
+   58  oc create sa myserviceaccount
+   59  oc get sa
+   60  oc get all
+   61  oc project classb
+   62  oc create deployment mynginx --image quay.io/redhattraining/hello-worls-nginx --save-config --dry-run client -o yaml > deploy.yml
+   63  oc create deployment --name mynginx --image quay.io/redhattraining/hello-worls-nginx --save-config --dry-run client -o yaml > deploy.yml
+   64  oc create deployment mynginx --image quay.io/redhattraining/hello-worls-nginx --save-config --dry-run=client -o yaml > deploy.yml
+   65  ls
+   66  cat deploy.yml 
+   67  oc create -f deploy.yml 
+   68  oc get all
+   69  vim deploy.yml 
+   70  oc apply -f deploy.yml 
+   71  oc get all
+   72  oc create service clusterip mynginx --tcp 8080:8080 --save-config dry-run=client -o yml > service.yml
+   73  oc create service clusterip mynginx --tcp 8080:8080 --save-config dry-run=client -o yaml > service.yml
+   74  oc create service clusterip mynginx --tcp 8080:8080 --save-config --dry-run=client -o yaml > service.yml
+   75  oc get svc
+   76  oc create -f service.yml
+   77  oc get svc
+   78  oc get all
+   79  vim deploy.yml 
+   80  vim service.yml 
+   81  mkdir custom
+   82  cd custom
+   83  mkdir base
+   84  cd base
+   85  cp ~/*.yml
+   86  cp ~/*.yml .
+   87  ls
+   88  ll
+   89  vim kustomization.yaml
+   90  ll
+   91  vim kustomization.yaml
+   92  cd ..
+   93  mkdir overlays
+   94  cd overla
+   95  cd overlays/
+   96  mkdir production
+   97  cd production/
+   98  Kustomization.yaml
+   99  vim kustomization.yaml
+  100  rm kustomization.yaml 
+  101  vim kustomization.yaml
+  102  vim ~/deploy.yml 
+  103  vim kustomization.yaml
+  104  vim ~/deploy.yml 
+  105  vim kustomization.yaml
+  106  cd ../../
+  107  cd bas
+  108  vim kustomization.yaml 
+  109  ls
+  110  vim deploy.yml 
+  111  vim service.yml 
+  112  cd ..
+  113  oc kustomize base
+  114  cat base/
+  115  cd ba
+  116  base
+  117  cd base
+  118  ls
+  119  ll
+  120  cat service.yml 
+  121  cd ..
+  122  oc kustomize base
+  123  oc kustomize base/
+  124  cd  base/
+  125  ls
+  126  vim service.yml
+  127  vim kustomization.yaml 
+  128  ll
+  129  cd  base/
+  130  ls
+  131  vim kustomization.yaml 
+  132  oc kustomize base
+  133  cd ..
+  134  oc kustomize base
+  135  vim base/service.yml
+  136  cd base/
+  137  cat kustomization.yaml 
+  138  ll
+  139  cat deploy.yml
+  140  cat service.yml 
+  141  vim service.yml 
+  142  cd ..
+  143  vim service.yml 
+  144  history
+  145  oc create service clusterip mynginx --tcp 8080:8080 --save-config --dry-run=client -o yaml > service.yml
+  146  cat service.yml
+  147  cp service.yml custom/base/
+  148  cd custom/base/
+  149  vim service.yml
+  150  cd ..
+  151  oc kustomize base
+  152  oc kustomize overlays/production/
+  153  oc new-project classc
+  154  oc apply -k base/
+  155  oc get pods
+  156  vim base/kustomization.yaml 
+  157  vim base/deploy.yml 
+  158  oc apply -k base/
+  159  oc get pods
+  160  oc get pods -w
+  161  oc apply -k overlays/production/
+  162  oc get pods
+  163  cd overlays/
+  164  ls
+  165  mkdir test
+  166  cp production/kustomization.yaml test/
+  167  cd test/
+  168  vim kustomization.yaml 
+  169  cd ..
+  170  oc kustomize overlays/test/
+  171  oc apply -k overlays/test/
+  172  oc get secrets
+  173  oc get template -n openshift
+  174  oc get template -n openshift | grep persistent
+  175  oc get template -n openshift | grep mysql-persistent
+  176  oc describe template mysql-persistent -n openshift
+  177  oc new-project classd
+  178  oc process --parameters mysql-persistent -n openshift
+  179  oc new-app --name mysql --template mysql-persistent -p MYSQL_USER=sundar -p MYSQL_PASSWORD=sundar123 -p MYSQL_DATABASE=mydbm
+  180  oc get pods
+  181  oc get pods -w
+  182  oc rsh mysql-1-kxwz7
+  183  oc get pods
+  184  oc process --parameters mysql-persistent -n openshift
+  185  oc process --parameters mysql-persistent -n openshift > mysqlparam.yml
+  186  vim mysqlparam.yml 
+  187  oc new-app --name mysql1 --template mysql-persistent
+  188  oc get pods
+  189  oc new-app --name mysql2 --template mysql-persistent
+  190  oc new-app --name mysundar --template mysql-persistent
+  191  oc new-project classe
+  192  oc new-app --name mysql1 --template mysql-persistent
+  193  oc get pods
+  194  oc whoami
+  195  oc get pods
+  196  oc projects
+  197  oc project
+  198  oc get pods
+  199  oc get pods -w
+  200  oc logs mysql-1-xqfkz
+  201  oc get pods
+  202  mv mysqlparam.yml mysqlparam.env
+  203  ll
+  204  vim mysqlparam.env 
+  205  oc get all
+  206  oc set env mysqlparam.env deploymentconfig/mysql
+  207  oc set env --help
+  208  oc set env --from=mysqlparam.env dc/mysql
+  209  oc create secret generic mysecret1 --from-file=mysqlparam.env
+  210  ll
+  211  oc set env --from=secret/mysecreat1 dc/mysql
+  212  oc set env --from=secret/mysecret1 dc/mysql
+  213  oc get pods
+  214  oc get all
+  215  oc rsh mysql-2-vxndt
+  216  oc get pods
+  217  oc rsh mysql-2-vxndt
+  218  cat mysqlparam.env 
+  219  oc describe secrets mysecret1
+  220  cat mysqlparam.env 
+  221  oc create secret generic mysqlsecrete --from-literal MYSQL_USER=sundar --from-literal MYSQL_PASSWORD=sundar1234 --from-literal MYSQL_ROOT_PASSWORD=root MYSQL_DATABASE=mydbm2
+  222  oc create secret generic mysqlsecrete --from-literal MYSQL_USER=sundar --from-literal MYSQL_PASSWORD=sundar1234 --from-literal MYSQL_ROOT_PASSWORD=root --from-literal MYSQL_DATABASE=mydbm2
+  223  oc get secrets 
+  224  oc set env --from=secret/mysqlsecreate dc/mysql
+  225  oc set env --from=secret/mysqlsecrete dc/mysql
+  226  oc get pods
+  227  oc rsh mysql-3-p6ghp
+  228  oc get pods
+  229  oc delete pod mysql-3-p6ghp
+  230  oc get pods
+  231  oc rsh mysql-3-hm25q 
+  232  oc describe pods mysql-3-hm25q
+  233  oc get secrets 
+  234  oc delete secrets mysecret1
+  235  oc describe pods mysql-3-hm25q
+  236  oc get pods
+  237  oc delete pod mysql-3-hm25q 
+  238  oc get pods
+  239  oc delete pod mysql-3-vr87h 
+  240  oc get pods
+  241  oc get pods -w
+  242  oc logs mysql-3-czb58 
+  243  oc get events
+  244  oc edit dc mysql
+  245  oc get pods
+  246  oc describe pod mysql-4-5vkkl 
+  247  oc get pods
+  248  oc rsh mysql-4-5vkkl
+  249  history
+  250  oc describe secrets mysqlsecrete 
+  251  oc get pods
+  252  oc rsh mysql-4-5vkkl
+  253  oc edit dc mysql 
+  254  oc get events
+  255  oc get pods
+  256  oc logs mysql-4-5vkkl 
+  257  oc get pods
+  258  oc delete pod mysql-4-5vkkl mysql-
+  259  oc delete pod mysql-4-5vkkl
+  260  oc get pods
+  261  oc logs mysql-4-9hc7d
+  262  oc get pods
+  263  oc rsh mysql-4-9hc7d 
+  264  oc logS MYSQL-4-9hc7d
+  265  oc logs mysql-4-9hc7d
+  266  oc set env --help
+  267  oc get dc
+  268  oc get pods
+  269  oc rollout latest dc/mysql
+  270  oc get secret mysecret -o yaml
+  271  oc get secret mysecrete1 -o yaml
+  272  oc get secret
+  273  oc get secret mysqlsecreate
+  274  oc get secret mysqlsecrete
+  275  oc get secret mysqlsecrete -o yaml
+  276  oc get tempalte
+  277  oc get template
+  278  oc get template mysql-persistent -o yaml -n openshift > mytemplate.yml
+  279  oc create -f mytemplate.yml 
+  280  vim mytemplate.yml 
+  281  oc create -f mytemplate.yml 
+  282  oc get template
+  283  oc get podas
+  284  oc get pods
+  285  oc get secret mysqlsecrete -o yaml
+  286  echo 'dXNlcg==' | base64 --decode
+  287  echo 'c3VuZGFyMTIzNA==' | base64 --decode
+  288  echo 'bXlkYm0y' | base64 --decode
+  289  echo 'c3VuZGFy' | base64 --decode
+  290  oc get pods
+  291  oc rsh mysql-5-rl98j
+  292  oc get template
+  293  oc project
+  294  oc get pods
+  295  oc rsh mysql-5-rl98j 
+  296  oc get pods
+  297  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443
+  298  lab start auth-providers
+  299  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443
+  300  oc get pods
+  301  oc rsh mysql-5-rl98j
+  302  oc get pods
+  303  oc logs dc/mysql
+  304  oc new-project gowri
+  305  oc get pods
+  306  history
+  307  oc process --parameters mysql-persistent -n openshift
+  308  oc new-app --name mysql --template mysql-persistent -p MYSQL_USER=sundar -p MYSQL_PASSWORD=sundar123 -p MYSQL_DATABASE=mydbm
+  309  oc get pods
+  310  oc rsh mysql-1-g766w 
+  311  oc project
+  312  oc create secret generic mysql-secret   --from-literal=MYSQL_USER=sundar   --from-literal=MYSQL_PASSWORD=sundar1234   --from-literal=MYSQL_DATABASE=mydb1   --from-literal=MYSQL_ROOT_PASSWORD=myrootpass
+  313  oc new-app --name mysql4 --template mysql-persistent
+  314  oc get pods
+  315  oc set env dc/mysql --from=secret/mysql-secret
+  316  podman get pods
+  317  oc get pods
+  318  oc rsh mysql-2-sp5zd
+  319  oc project classe
+  320  oc get pods
+  321  oc create secret generic mysql-secret   --from-literal=MYSQL_USER=sundar   --from-literal=MYSQL_PASSWORD=sundar12345   --from-literal=MYSQL_DATABASE=mydb1   --from-literal=MYSQL_ROOT_PASSWORD=myrootpass
+  322  oc set env dc/mysql --from=secret/mysql-secret
+  323  co get pods
+  324  oc get pods
+  325  oc rsh mysql-6-mhxg6 
+  326  oc delete dc/mysql
+  327  oc delete pvc/mysql
+  328  oc new-app mysql7 --template=mysql-persistent
+  329  oc new-app mysql-app --template=mysql-persistent
+  330  oc get pods
+  331  oc whoami
+  332  oc get secrets 
+  333  oc new-app --template=mysql-persistent
+  334  oc get pods
+  335  oc delete dc/mysql
+  336  oc delete pvc/mysql
+  337  oc get pods
+  338  oc new-app --template=mysql-persistent
+  339  oc new-app mysql5 --template=mysql-persistent
+  340  oc get pods
+  341  oc get dc/mysql
+  342  oc get pvc/mysql
+  343  oc set env dc/mysql --from=secret/mysql-secret
+  344  oc get pods
+  345  oc rsh mysql-2-h8h8n 
+  346  oc prject gowri
+  347  oc project gowri
+  348  oc get pods
+  349  oc project classe
+  350  oc get pods
+  351  oc delete dc/mysql
+  352  oc delete pvc/mysql
+  353  oc get pods
+  354  oc get secrets 
+  355  oc describe secrets mysql-secret 
+  356  oc get pods
+  357  history
+  358  oc new-app --name mysql6 --template=mysql-persistent
+  359  oc get pods
+  360  oc set env dc/mysql --from=secret/mysql-secret
+  361  oc get pods
+  362  oc rsh mysql-2-m6c7r 
+  363  oc get pods
+  364  oc delete dc/mysql
+  365  oc delete pvc/mysql
+  366  oc get pods
+  367  oc get secrets 
+  368  oc delete secrets mysql
+  369  oc get service
+  370  oc delete service mysql
+  371  oc get pods
+  372  oc new-app --name mysql6 --template=mysql-persistent
+  373  oc get pods
+  374  oc get service
+  375  oc get secrets 
+  376  oc set env dc/mysql --from=secret/mysql-secret
+  377  oc get pods
+  378  oc rsh mysql-2-fqg7n 
+  379  lab start network-ingress 
+  380  cd DO280/labs/network-ingress/
+  381  ll
+  382  vim todo-app-v2.yaml 
+  383  lab start auth-providers 
+  384  helm --version
+  385  helm version -a
+  386  helm -v
+  387  helm
+  388  helm version
+  389  mkdir project
+  390  cd project/
+  391  helm create mychart
+  392  ll
+  393  tree
+  394  vim mychart/Chart.yaml 
+  395  vim mychart/values.yaml 
+  396  vim mychart/templates/deployment.yaml 
+  397  vim mychart/templates/service.yaml 
+  398  helm install mychart mynginxweb
+  399  helm install  mynginxweb mychart/
+  400  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443
+  401  helm install  mynginxweb mychart/
+  402  oc get all
+  403  oc get pods -w
+  404  vim mychart/Chart.yaml 
+  405  vim mychart/values.yaml 
+  406  oc get pods
+  407  helm list -a
+  408  oc get pods
+  409  oc delete pod mynginxweb-mychart-646d44799-n9jds
+  410  oc get pods
+  411  helm upgrade mynginxweb
+  412  helm upgrade mynginxweb mychart/
+  413  oc get pods
+  414  helm list -a
+  415  vim mychart/values.yaml 
+  416  vim mychart/templates/deployment.yaml 
+  417  vim mychart/values.yaml 
+  418  vim mychart/Chart.yaml 
+  419  helm upgrade mynginxweb mychart/
+  420  oc get pods
+  421  helm list -a
+  422  helm rollback mynginxweb 2
+  423  helm list -a
+  424  oc get pods
+  425  helm rollback mynginxweb 3
+  426  oc get pods
+  427  helm list -a
+  428  helm history 
+  429  helm history mynginxweb 
+  430  helm history --help
+  431  helm status mynginxweb 
+  432  helm status mynginxweb 1
+  433  helm status mynginxweb
+  434  helm repo add mychart http://helm.ocp4.example.com/charts
+  435  helm list
+  436  helm repo list
+  437  helm search repo --version
+  438  helm search repo --versions
+  439  tree mychart
+  440  helm repo add myrepo http://helm.ocp4.example.com/charts
+  441  helm search repo --versions
+  442  tree myrepo
+  443  tree mychart
+  444  oc project
+  445  oc new-project classf
+  446  helm search repo --versions
+  447  helm show values myrepo/etherpad --version 0.0.6
+  448  ssh lab@utility
+  449  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP
+  450  cd ..
+  451  cat kubeadmin-password 
+  452  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP-oDQVd
+  453  oc whoami
+  454  oc whoami --show-console 
+  455  oc get secrets -n openshift-config
+  456  oc login -u admin -p redhatocp
+  457  oc get secrets -n openshift-config
+  458  oc extract secret/htpasswd-secret -n openshift-config --to . --confirm
+  459  cat htpasswd 
+  460  htpasswd -b -B htpasswd gowri redhat
+  461  cat htpasswd 
+  462  htpasswd -b -B htpasswd sundar redhat
+  463  htpasswd -b -B htpasswd anto redhat
+  464  cat htpasswd 
+  465  oc set data secret/htpasswd-secret --from-file htpasswd=htpasswd -n openshift-config
+  466  oc get pods -n openshift-authentication -w
+  467  oc login -usundar -predhat
+  468  oc get pods -n openshift-authentication -w
+  469  oc get auth -o yaml > auth.yml
+  470  oc get oauth -o yaml > oauth.yml
+  471  cat oauth.yml
+  472  vim oauth.yml 
+  473  oc apply -f oauth.yml -n openshift-config
+  474  oc get pods openshift-authentication -w
+  475  oc get pods
+  476  oc get pods -n openshift-authentication -w
+  477  oc create secret generic htp-secret --from-file htpasswd=htpasswd -n openshift-config
+  478  vim oauth.yml 
+  479  oc replace -f oauth.yml -n openshift-config
+  480  oc apply -f oauth.yml -n openshift-config
+  481  oc get oauth -o yaml > oauth.yml
+  482  vim oauth.yml 
+  483  oc get secrets -n openshift-config
+  484  oc apply -f oauth.yml -n openshift-config
+  485  oc get pods -n openshift-authentication -w
+  486  oc login -u gowri -p redhat
+  487  oc new-project testProject
+  488  oc new-project testproject
+  489  oc project
+  490  oc login -uadmin -predhatocp
+  491  htpasswd -D htpasswd gowri
+  492  cat htpasswd
+  493  oc set
+  494  oc set data secret/htp-secret --from-file htpasswd=htpasswd -n openshift-config
+  495  oc get pods -n openshift-authentication -w
+  496  oc login -ugowri -predhat
+  497  oc login -usundar -predhat
+  498  oc login -u admin -p redhatocp
+  499  oc get rolebinding
+  500  whoami
+  501  oc login -u developer -p developer
+  502  oc get rolebinding
+  503  oc login -u admin -p redhatocp
+  504  oc adm policy add-cluster-role-to-user cluster-admin sundar
+  505  oc adm policy add-cluster-role-to-user cluster-reader anto
+  506  oc login -u sundar -p redhat
+  507  oc login -u anto -p redhat
+  508  oc new-project testantouser
+  509  oc project
+  510  oc login -u admin -p redhatocp
+  511  oc adm policy remove-cluster-role-from-user anto
+  512  oc get rolebinding
+  513  oc get rolebinding -user anto
+  514  oc get rolebinding --user anto
+  515  oc get rolebinding --username anto
+  516  whoami
+  517  oc whoami
+  518  oc get rolebinding -A
+  519  oc get rolebinding -A | grep anto
+  520  oc get rolebinding -A | grep sundar
+  521  oc get clusterrolebinding -A | grep sundar
+  522  oc get clusterrolebinding
+  523  oc get clusterrolebinding -A
+  524  oc get rolebinding -o wide
+  525  oc get clusterrolebinding -o wide
+  526  oc get clusterrolebinding -o wide | grep sundar
+  527  oc get clusterrolebinding -o wide | grep anto
+  528  oc adm policy remove-cluster-role-from-user cluster-reader anto
+  529  oc get clusterrolebinding -o wide | grep anto
+  530  oc get rolebinding -o wide | grep anto
+  531  oc adm policy add-role-to-user view anto
+  532  oc get rolebinding -o wide | grep anto
+  533  oc get rolebinding -o wide | grep sundar
+  534  oc adm policy add-role-to-user view anto -n classc
+  535  oc get rolebinding -o wide | grep anto
+  536  oc get rolebinding -o wide -n classc
+  537  oc adm groups new mygroup
+  538  oc adm groups add-users anto mygroup
+  539  oc adm groups add-users mygroup anto
+  540  oc get groups
+  541  oc adm policy add-role-to-group view mygroup
+  542  oc get rolebindings -o wide | grep -v '^system:'
+  543  oc whoami
+  544  oc get nodes
+  545  oc get nodes -o wide
+  546  gs=gowri
+  547  oc adm groups new $gs
+  548  oc new-project classg 
+  549  oc create deployment mydeploy1 --image quay.io/redhattraining/hello-world-nginx
+  550  oc get all
+  551  oc scale --replicas 2 deploymentconfig mydeploy1
+  552  oc scale --replicas=2 deploymentconfig mydeploy1
+  553  oc scale --replicas=2 deploymentconfig/mydeploy1
+  554  oc scale --replicas=2 dc/mydeploy1
+  555  oc scale --replicas=2 dc mydeploy1
+  556  oc scale help
+  557  oc scale --replicas --help
+  558  oc scale --replicas help
+  559  oc scale --help
+  560  oc scale --replicas=2 dc/mydeploy1
+  561  oc scale --replicas=2 deployment/mydeploy1
+  562  oc get pods
+  563  oc get deployment mydeploy1 | grep -i labels
+  564  oc get deployment mydeploy1 | grep -i label
+  565  oc describe deployment mydeploy1 | grep -i label
+  566  oc create service clusterip mydeploy1
+  567  oc create service clusterip mydeploy1 --tcp 8080:8080
+  568  oc get svc
+  569  oc get endpoints
+  570  ssh core@master01
+  571  ssh lab@utility
+  572  oc debug node/master01
+  573  curl 172.30.33.151:8080
+  574  oc get service
+  575  oc expose service mydeploy1 
+  576  oc get route
+  577  curl mydeploy1-classg.apps.ocp4.example.com
+  578  ping mydeploy1-classg.apps.ocp4.example.com
+  579  openssl genrsa -out sign.key 4096
+  580  cat sign.key
+  581  openssl req -new -in sign.key -out sign.csr -subj="/CN=US/ST=North Carolina/L=Raleigh/O=Red Hat/CN=*.ocp4.example.com"
+  582  openssl req -new -key sign.key -out sign.csr -subj="/CN=US/ST=North Carolina/L=Raleigh/O=Red Hat/CN=*.ocp4.example.com"
+  583  openssl x509 -req -in sign.csr -out sign.crt -signkey sign.key
+  584  #oc create route edge --cert sign.crt --key sign.key --service mydeploy1
+  585  oc delete routes.route.openshift.io mydeploy1 
+  586  oc create route edge --cert sign.crt --key sign.key --service mydeploy1
+  587  oc get route
+  588  curl mydeploy1-classg.apps.ocp4.example.com
+  589  curl -k https://mydeploy1-classg.apps.ocp4.example.com
+  590  oc get route
+  591  oc delete routes.route.openshift.io mydeploy1 
+  592  oc edit deployment mydeploy1 
+  593  oc edit deployment mydeploy1
+  594  oc create secret tls passthroughsecret --cert sign.crt --key sign.key 
+  595  oc get secrets
+  596  oc edit deployment mydeploy1
+  597  oc get deployment mydeploy1 - o yaml > deployment.yml
+  598  oc get deployment mydeploy1 -o yaml > deployment.yml
+  599  ll
+  600  vim deployment.yml 
+  601  oc apply -f deployment.yml 
+  602  oc get deploy
+  603  oc apply -f deployment.yml 
+  604  vim deployment.yml 
+  605  oc apply -f deployment.yml 
+  606  vim deployment.yml 
+  607  oc get secrets
+  608  vim deployment.yml 
+  609  oc apply -f deployment.yml 
+  610  vim deployment.yml 
+  611  oc create -f deployment.yml 
+  612  vim deployment.yml 
+  613  oc create -f deployment.yml 
+  614  vim deployment.yml 
+  615  oc create -f deployment.yml 
+  616  vim deployment.yml 
+  617  oc create -f deployment.yml 
+  618  vim deployment.yml 
+  619  oc create -f deployment.yml 
+  620  vim deployment.yml 
+  621  oc create -f deployment.yml 
+  622  oc create service clusterip mydeploy2 --tcp 8080:8080
+  623  oc create route passthrough mydeploy2 --service mydeploy2 --port 8443
+  624  oc get route
+  625  oc rsh mydeploy2-5d45764b66-td6xw 
+  626  oc get route
+  627  curl -k https://mydeploy2-classg.apps.ocp4.example.com
+  628  oc new-project networkPolicyA
+  629  oc new-project networkpolicya
+  630  history
+  631  oc create deployment mydeploy1 --image quay.io/redhattraining/hello-world-nginx
+  632  oc create deployment mydeploy2 --image quay.io/redhattraining/hello-world-nginx
+  633  oc create deployment mydeploy3 --image quay.io/redhattraining/hello-world-nginx
+  634  oc create service clusterip mydeploy1 --tcp 8080:8080
+  635  oc create service clusterip mydeploy2 --tcp 8080:8080
+  636  oc create service clusterip mydeploy3 --tcp 8080:8080
+  637  oc get pods
+  638  oc get svc
+  639  oc get endpoints
+  640  oc new-project networkpolicyb
+  641  oc create deployment mydeploy4 --image quay.io/redhattraining/hello-world-nginx
+  642  oc create deployment mydeploy5 --image quay.io/redhattraining/hello-world-nginx
+  643  oc create deployment mydeploy6 --image quay.io/redhattraining/hello-world-nginx
+  644  oc create service clusterip mydeploy4 --tcp 8080:8080
+  645  oc create service clusterip mydeploy5 --tcp 8080:8080
+  646  oc create service clusterip mydeploy6 --tcp 8080:8080
+  647  oc get endpoints -n networkpolicya
+  648  oc rsh mydeploy4-84468d5b66-sv7kr
+  649  oc get route
+  650  oc whoami --show-console
+  651  oc describe networkpolicies.networking.k8s.io denyall -n networkpolicya
+  652  oc rsh mydeploy4-84468d5b66-sv7kr
+  653  oc describe mydeploy4 | grep -i labels
+  654  oc describe deployment mydeploy4 | grep -i labels
+  655  oc label namespaces networkpolicyb network=networkb
+  656  oc describe namespaces networkpolicyb | grep -i labels
+  657  oc describe namespaces networkpolicyb
+  658  oc label namespaces networkpolicya network=networka
+  659  oc describe namespaces networkpolicya
+  660  oc label namespaces networkpolicya network-
+  661  oc describe namespaces networkpolicya
+  662  oc label namespaces networkpolicya network=networka
+  663  oc describe namespaces networkpolicya
+  664  oc rsh mydeploy4-84468d5b66-sv7kr 
+  665  oc describe networkpolicies.networking.k8s.io allownetworkb
+  666  oc rsh mydeploy4-84468d5b66-sv7kr 
+  667  oc get pods -o wide -n networkpolicya
+  668  oc rsh mydeploy4-84468d5b66-sv7kr 
+  669  oc rsh mydeploy5-86744b6785-qm85w 
+  670  history
+[student@workstation ~]$ 
